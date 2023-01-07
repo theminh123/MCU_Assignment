@@ -1,0 +1,1436 @@
+ARM GAS  C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"traffic.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.setTraffic1Red,"ax",%progbits
+  18              		.align	1
+  19              		.global	setTraffic1Red
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  24              	setTraffic1Red:
+  25              	.LFB68:
+  26              		.file 1 "./Core/Src/traffic.c"
+   1:./Core/Src/traffic.c **** 
+   2:./Core/Src/traffic.c **** #include "traffic.h"
+   3:./Core/Src/traffic.c **** 
+   4:./Core/Src/traffic.c **** void setTraffic1Red(){
+  27              		.loc 1 4 22
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 1, uses_anonymous_args = 0
+  31 0000 80B5     		push	{r7, lr}
+  32              		.cfi_def_cfa_offset 8
+  33              		.cfi_offset 7, -8
+  34              		.cfi_offset 14, -4
+  35 0002 00AF     		add	r7, sp, #0
+  36              		.cfi_def_cfa_register 7
+   5:./Core/Src/traffic.c **** 	HAL_GPIO_WritePin(TrafficLight1_0_GPIO_Port, TrafficLight1_0_Pin, GPIO_PIN_SET);
+  37              		.loc 1 5 2
+  38 0004 0122     		movs	r2, #1
+  39 0006 4FF48061 		mov	r1, #1024
+  40 000a 0548     		ldr	r0, .L2
+  41 000c FFF7FEFF 		bl	HAL_GPIO_WritePin
+   6:./Core/Src/traffic.c **** 	HAL_GPIO_WritePin(TrafficLight1_1_GPIO_Port, TrafficLight1_1_Pin, GPIO_PIN_RESET);
+  42              		.loc 1 6 2
+  43 0010 0022     		movs	r2, #0
+  44 0012 0821     		movs	r1, #8
+  45 0014 0348     		ldr	r0, .L2+4
+  46 0016 FFF7FEFF 		bl	HAL_GPIO_WritePin
+   7:./Core/Src/traffic.c **** 
+   8:./Core/Src/traffic.c **** }
+  47              		.loc 1 8 1
+  48 001a 00BF     		nop
+  49 001c 80BD     		pop	{r7, pc}
+  50              	.L3:
+ARM GAS  C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s 			page 2
+
+
+  51 001e 00BF     		.align	2
+  52              	.L2:
+  53 0020 00080140 		.word	1073809408
+  54 0024 000C0140 		.word	1073810432
+  55              		.cfi_endproc
+  56              	.LFE68:
+  58              		.section	.text.setTraffic2Red,"ax",%progbits
+  59              		.align	1
+  60              		.global	setTraffic2Red
+  61              		.syntax unified
+  62              		.thumb
+  63              		.thumb_func
+  65              	setTraffic2Red:
+  66              	.LFB69:
+   9:./Core/Src/traffic.c **** 
+  10:./Core/Src/traffic.c **** void setTraffic2Red(){
+  67              		.loc 1 10 22
+  68              		.cfi_startproc
+  69              		@ args = 0, pretend = 0, frame = 0
+  70              		@ frame_needed = 1, uses_anonymous_args = 0
+  71 0000 80B5     		push	{r7, lr}
+  72              		.cfi_def_cfa_offset 8
+  73              		.cfi_offset 7, -8
+  74              		.cfi_offset 14, -4
+  75 0002 00AF     		add	r7, sp, #0
+  76              		.cfi_def_cfa_register 7
+  11:./Core/Src/traffic.c **** 	HAL_GPIO_WritePin(TrafficLight2_0_GPIO_Port, TrafficLight2_0_Pin, GPIO_PIN_SET);
+  77              		.loc 1 11 2
+  78 0004 0122     		movs	r2, #1
+  79 0006 2021     		movs	r1, #32
+  80 0008 0448     		ldr	r0, .L5
+  81 000a FFF7FEFF 		bl	HAL_GPIO_WritePin
+  12:./Core/Src/traffic.c **** 	HAL_GPIO_WritePin(TrafficLight2_1_GPIO_Port, TrafficLight2_1_Pin, GPIO_PIN_RESET);
+  82              		.loc 1 12 2
+  83 000e 0022     		movs	r2, #0
+  84 0010 1021     		movs	r1, #16
+  85 0012 0248     		ldr	r0, .L5
+  86 0014 FFF7FEFF 		bl	HAL_GPIO_WritePin
+  13:./Core/Src/traffic.c **** }
+  87              		.loc 1 13 1
+  88 0018 00BF     		nop
+  89 001a 80BD     		pop	{r7, pc}
+  90              	.L6:
+  91              		.align	2
+  92              	.L5:
+  93 001c 000C0140 		.word	1073810432
+  94              		.cfi_endproc
+  95              	.LFE69:
+  97              		.section	.text.setTraffic1Green,"ax",%progbits
+  98              		.align	1
+  99              		.global	setTraffic1Green
+ 100              		.syntax unified
+ 101              		.thumb
+ 102              		.thumb_func
+ 104              	setTraffic1Green:
+ 105              	.LFB70:
+  14:./Core/Src/traffic.c **** 
+ARM GAS  C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s 			page 3
+
+
+  15:./Core/Src/traffic.c **** void setTraffic1Green(){
+ 106              		.loc 1 15 24
+ 107              		.cfi_startproc
+ 108              		@ args = 0, pretend = 0, frame = 0
+ 109              		@ frame_needed = 1, uses_anonymous_args = 0
+ 110 0000 80B5     		push	{r7, lr}
+ 111              		.cfi_def_cfa_offset 8
+ 112              		.cfi_offset 7, -8
+ 113              		.cfi_offset 14, -4
+ 114 0002 00AF     		add	r7, sp, #0
+ 115              		.cfi_def_cfa_register 7
+  16:./Core/Src/traffic.c **** 	HAL_GPIO_WritePin(TrafficLight1_0_GPIO_Port, TrafficLight1_0_Pin, GPIO_PIN_RESET);
+ 116              		.loc 1 16 2
+ 117 0004 0022     		movs	r2, #0
+ 118 0006 4FF48061 		mov	r1, #1024
+ 119 000a 0548     		ldr	r0, .L8
+ 120 000c FFF7FEFF 		bl	HAL_GPIO_WritePin
+  17:./Core/Src/traffic.c **** 	HAL_GPIO_WritePin(TrafficLight1_1_GPIO_Port, TrafficLight1_1_Pin, GPIO_PIN_SET);
+ 121              		.loc 1 17 2
+ 122 0010 0122     		movs	r2, #1
+ 123 0012 0821     		movs	r1, #8
+ 124 0014 0348     		ldr	r0, .L8+4
+ 125 0016 FFF7FEFF 		bl	HAL_GPIO_WritePin
+  18:./Core/Src/traffic.c **** }
+ 126              		.loc 1 18 1
+ 127 001a 00BF     		nop
+ 128 001c 80BD     		pop	{r7, pc}
+ 129              	.L9:
+ 130 001e 00BF     		.align	2
+ 131              	.L8:
+ 132 0020 00080140 		.word	1073809408
+ 133 0024 000C0140 		.word	1073810432
+ 134              		.cfi_endproc
+ 135              	.LFE70:
+ 137              		.section	.text.clearTraffic1,"ax",%progbits
+ 138              		.align	1
+ 139              		.global	clearTraffic1
+ 140              		.syntax unified
+ 141              		.thumb
+ 142              		.thumb_func
+ 144              	clearTraffic1:
+ 145              	.LFB71:
+  19:./Core/Src/traffic.c **** 
+  20:./Core/Src/traffic.c **** void clearTraffic1(){
+ 146              		.loc 1 20 21
+ 147              		.cfi_startproc
+ 148              		@ args = 0, pretend = 0, frame = 0
+ 149              		@ frame_needed = 1, uses_anonymous_args = 0
+ 150 0000 80B5     		push	{r7, lr}
+ 151              		.cfi_def_cfa_offset 8
+ 152              		.cfi_offset 7, -8
+ 153              		.cfi_offset 14, -4
+ 154 0002 00AF     		add	r7, sp, #0
+ 155              		.cfi_def_cfa_register 7
+  21:./Core/Src/traffic.c **** 	HAL_GPIO_WritePin(TrafficLight1_0_GPIO_Port, TrafficLight1_0_Pin, GPIO_PIN_RESET);
+ 156              		.loc 1 21 2
+ 157 0004 0022     		movs	r2, #0
+ARM GAS  C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s 			page 4
+
+
+ 158 0006 4FF48061 		mov	r1, #1024
+ 159 000a 0548     		ldr	r0, .L11
+ 160 000c FFF7FEFF 		bl	HAL_GPIO_WritePin
+  22:./Core/Src/traffic.c **** 	HAL_GPIO_WritePin(TrafficLight1_1_GPIO_Port, TrafficLight1_1_Pin, GPIO_PIN_RESET);
+ 161              		.loc 1 22 2
+ 162 0010 0022     		movs	r2, #0
+ 163 0012 0821     		movs	r1, #8
+ 164 0014 0348     		ldr	r0, .L11+4
+ 165 0016 FFF7FEFF 		bl	HAL_GPIO_WritePin
+  23:./Core/Src/traffic.c **** }
+ 166              		.loc 1 23 1
+ 167 001a 00BF     		nop
+ 168 001c 80BD     		pop	{r7, pc}
+ 169              	.L12:
+ 170 001e 00BF     		.align	2
+ 171              	.L11:
+ 172 0020 00080140 		.word	1073809408
+ 173 0024 000C0140 		.word	1073810432
+ 174              		.cfi_endproc
+ 175              	.LFE71:
+ 177              		.section	.text.setTraffic2Green,"ax",%progbits
+ 178              		.align	1
+ 179              		.global	setTraffic2Green
+ 180              		.syntax unified
+ 181              		.thumb
+ 182              		.thumb_func
+ 184              	setTraffic2Green:
+ 185              	.LFB72:
+  24:./Core/Src/traffic.c **** 
+  25:./Core/Src/traffic.c **** 
+  26:./Core/Src/traffic.c **** void setTraffic2Green(){
+ 186              		.loc 1 26 24
+ 187              		.cfi_startproc
+ 188              		@ args = 0, pretend = 0, frame = 0
+ 189              		@ frame_needed = 1, uses_anonymous_args = 0
+ 190 0000 80B5     		push	{r7, lr}
+ 191              		.cfi_def_cfa_offset 8
+ 192              		.cfi_offset 7, -8
+ 193              		.cfi_offset 14, -4
+ 194 0002 00AF     		add	r7, sp, #0
+ 195              		.cfi_def_cfa_register 7
+  27:./Core/Src/traffic.c **** 	HAL_GPIO_WritePin(TrafficLight2_0_GPIO_Port, TrafficLight2_0_Pin, GPIO_PIN_RESET);
+ 196              		.loc 1 27 2
+ 197 0004 0022     		movs	r2, #0
+ 198 0006 2021     		movs	r1, #32
+ 199 0008 0448     		ldr	r0, .L14
+ 200 000a FFF7FEFF 		bl	HAL_GPIO_WritePin
+  28:./Core/Src/traffic.c **** 	HAL_GPIO_WritePin(TrafficLight2_1_GPIO_Port, TrafficLight2_1_Pin, GPIO_PIN_SET);
+ 201              		.loc 1 28 2
+ 202 000e 0122     		movs	r2, #1
+ 203 0010 1021     		movs	r1, #16
+ 204 0012 0248     		ldr	r0, .L14
+ 205 0014 FFF7FEFF 		bl	HAL_GPIO_WritePin
+  29:./Core/Src/traffic.c **** }
+ 206              		.loc 1 29 1
+ 207 0018 00BF     		nop
+ 208 001a 80BD     		pop	{r7, pc}
+ARM GAS  C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s 			page 5
+
+
+ 209              	.L15:
+ 210              		.align	2
+ 211              	.L14:
+ 212 001c 000C0140 		.word	1073810432
+ 213              		.cfi_endproc
+ 214              	.LFE72:
+ 216              		.section	.text.setTraffic1Yellow,"ax",%progbits
+ 217              		.align	1
+ 218              		.global	setTraffic1Yellow
+ 219              		.syntax unified
+ 220              		.thumb
+ 221              		.thumb_func
+ 223              	setTraffic1Yellow:
+ 224              	.LFB73:
+  30:./Core/Src/traffic.c **** 
+  31:./Core/Src/traffic.c **** void setTraffic1Yellow(){
+ 225              		.loc 1 31 25
+ 226              		.cfi_startproc
+ 227              		@ args = 0, pretend = 0, frame = 0
+ 228              		@ frame_needed = 1, uses_anonymous_args = 0
+ 229 0000 80B5     		push	{r7, lr}
+ 230              		.cfi_def_cfa_offset 8
+ 231              		.cfi_offset 7, -8
+ 232              		.cfi_offset 14, -4
+ 233 0002 00AF     		add	r7, sp, #0
+ 234              		.cfi_def_cfa_register 7
+  32:./Core/Src/traffic.c **** 	HAL_GPIO_WritePin(TrafficLight1_0_GPIO_Port, TrafficLight1_0_Pin, GPIO_PIN_SET);
+ 235              		.loc 1 32 2
+ 236 0004 0122     		movs	r2, #1
+ 237 0006 4FF48061 		mov	r1, #1024
+ 238 000a 0548     		ldr	r0, .L17
+ 239 000c FFF7FEFF 		bl	HAL_GPIO_WritePin
+  33:./Core/Src/traffic.c **** 	HAL_GPIO_WritePin(TrafficLight1_1_GPIO_Port, TrafficLight1_1_Pin, GPIO_PIN_SET);
+ 240              		.loc 1 33 2
+ 241 0010 0122     		movs	r2, #1
+ 242 0012 0821     		movs	r1, #8
+ 243 0014 0348     		ldr	r0, .L17+4
+ 244 0016 FFF7FEFF 		bl	HAL_GPIO_WritePin
+  34:./Core/Src/traffic.c **** }
+ 245              		.loc 1 34 1
+ 246 001a 00BF     		nop
+ 247 001c 80BD     		pop	{r7, pc}
+ 248              	.L18:
+ 249 001e 00BF     		.align	2
+ 250              	.L17:
+ 251 0020 00080140 		.word	1073809408
+ 252 0024 000C0140 		.word	1073810432
+ 253              		.cfi_endproc
+ 254              	.LFE73:
+ 256              		.section	.text.setTraffic2Yellow,"ax",%progbits
+ 257              		.align	1
+ 258              		.global	setTraffic2Yellow
+ 259              		.syntax unified
+ 260              		.thumb
+ 261              		.thumb_func
+ 263              	setTraffic2Yellow:
+ 264              	.LFB74:
+ARM GAS  C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s 			page 6
+
+
+  35:./Core/Src/traffic.c **** 
+  36:./Core/Src/traffic.c **** void setTraffic2Yellow(){
+ 265              		.loc 1 36 25
+ 266              		.cfi_startproc
+ 267              		@ args = 0, pretend = 0, frame = 0
+ 268              		@ frame_needed = 1, uses_anonymous_args = 0
+ 269 0000 80B5     		push	{r7, lr}
+ 270              		.cfi_def_cfa_offset 8
+ 271              		.cfi_offset 7, -8
+ 272              		.cfi_offset 14, -4
+ 273 0002 00AF     		add	r7, sp, #0
+ 274              		.cfi_def_cfa_register 7
+  37:./Core/Src/traffic.c **** 	HAL_GPIO_WritePin(TrafficLight2_0_GPIO_Port, TrafficLight2_0_Pin, GPIO_PIN_SET);
+ 275              		.loc 1 37 2
+ 276 0004 0122     		movs	r2, #1
+ 277 0006 2021     		movs	r1, #32
+ 278 0008 0448     		ldr	r0, .L20
+ 279 000a FFF7FEFF 		bl	HAL_GPIO_WritePin
+  38:./Core/Src/traffic.c **** 	HAL_GPIO_WritePin(TrafficLight2_1_GPIO_Port, TrafficLight2_1_Pin, GPIO_PIN_SET);
+ 280              		.loc 1 38 2
+ 281 000e 0122     		movs	r2, #1
+ 282 0010 1021     		movs	r1, #16
+ 283 0012 0248     		ldr	r0, .L20
+ 284 0014 FFF7FEFF 		bl	HAL_GPIO_WritePin
+  39:./Core/Src/traffic.c **** }
+ 285              		.loc 1 39 1
+ 286 0018 00BF     		nop
+ 287 001a 80BD     		pop	{r7, pc}
+ 288              	.L21:
+ 289              		.align	2
+ 290              	.L20:
+ 291 001c 000C0140 		.word	1073810432
+ 292              		.cfi_endproc
+ 293              	.LFE74:
+ 295              		.section	.text.clearTraffic2,"ax",%progbits
+ 296              		.align	1
+ 297              		.global	clearTraffic2
+ 298              		.syntax unified
+ 299              		.thumb
+ 300              		.thumb_func
+ 302              	clearTraffic2:
+ 303              	.LFB75:
+  40:./Core/Src/traffic.c **** 
+  41:./Core/Src/traffic.c **** void clearTraffic2(){
+ 304              		.loc 1 41 21
+ 305              		.cfi_startproc
+ 306              		@ args = 0, pretend = 0, frame = 0
+ 307              		@ frame_needed = 1, uses_anonymous_args = 0
+ 308 0000 80B5     		push	{r7, lr}
+ 309              		.cfi_def_cfa_offset 8
+ 310              		.cfi_offset 7, -8
+ 311              		.cfi_offset 14, -4
+ 312 0002 00AF     		add	r7, sp, #0
+ 313              		.cfi_def_cfa_register 7
+  42:./Core/Src/traffic.c **** 	HAL_GPIO_WritePin(TrafficLight2_0_GPIO_Port, TrafficLight2_0_Pin, GPIO_PIN_RESET);
+ 314              		.loc 1 42 2
+ 315 0004 0022     		movs	r2, #0
+ARM GAS  C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s 			page 7
+
+
+ 316 0006 2021     		movs	r1, #32
+ 317 0008 0448     		ldr	r0, .L23
+ 318 000a FFF7FEFF 		bl	HAL_GPIO_WritePin
+  43:./Core/Src/traffic.c **** 	HAL_GPIO_WritePin(TrafficLight2_1_GPIO_Port, TrafficLight2_1_Pin, GPIO_PIN_RESET);
+ 319              		.loc 1 43 2
+ 320 000e 0022     		movs	r2, #0
+ 321 0010 1021     		movs	r1, #16
+ 322 0012 0248     		ldr	r0, .L23
+ 323 0014 FFF7FEFF 		bl	HAL_GPIO_WritePin
+  44:./Core/Src/traffic.c **** }
+ 324              		.loc 1 44 1
+ 325 0018 00BF     		nop
+ 326 001a 80BD     		pop	{r7, pc}
+ 327              	.L24:
+ 328              		.align	2
+ 329              	.L23:
+ 330 001c 000C0140 		.word	1073810432
+ 331              		.cfi_endproc
+ 332              	.LFE75:
+ 334              		.section	.text.setPedestrianRed,"ax",%progbits
+ 335              		.align	1
+ 336              		.global	setPedestrianRed
+ 337              		.syntax unified
+ 338              		.thumb
+ 339              		.thumb_func
+ 341              	setPedestrianRed:
+ 342              	.LFB76:
+  45:./Core/Src/traffic.c **** 
+  46:./Core/Src/traffic.c **** void setPedestrianRed(){
+ 343              		.loc 1 46 24
+ 344              		.cfi_startproc
+ 345              		@ args = 0, pretend = 0, frame = 0
+ 346              		@ frame_needed = 1, uses_anonymous_args = 0
+ 347 0000 80B5     		push	{r7, lr}
+ 348              		.cfi_def_cfa_offset 8
+ 349              		.cfi_offset 7, -8
+ 350              		.cfi_offset 14, -4
+ 351 0002 00AF     		add	r7, sp, #0
+ 352              		.cfi_def_cfa_register 7
+  47:./Core/Src/traffic.c **** 	HAL_GPIO_WritePin(PedestrianLight_0_GPIO_Port, PedestrianLight_0_Pin, GPIO_PIN_SET);
+ 353              		.loc 1 47 2
+ 354 0004 0122     		movs	r2, #1
+ 355 0006 4FF48061 		mov	r1, #1024
+ 356 000a 0548     		ldr	r0, .L26
+ 357 000c FFF7FEFF 		bl	HAL_GPIO_WritePin
+  48:./Core/Src/traffic.c **** 	HAL_GPIO_WritePin(PedestrianLight_1_GPIO_Port, PedestrianLight_1_Pin, GPIO_PIN_RESET);
+ 358              		.loc 1 48 2
+ 359 0010 0022     		movs	r2, #0
+ 360 0012 4FF48071 		mov	r1, #256
+ 361 0016 0348     		ldr	r0, .L26+4
+ 362 0018 FFF7FEFF 		bl	HAL_GPIO_WritePin
+  49:./Core/Src/traffic.c **** }
+ 363              		.loc 1 49 1
+ 364 001c 00BF     		nop
+ 365 001e 80BD     		pop	{r7, pc}
+ 366              	.L27:
+ 367              		.align	2
+ARM GAS  C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s 			page 8
+
+
+ 368              	.L26:
+ 369 0020 000C0140 		.word	1073810432
+ 370 0024 00080140 		.word	1073809408
+ 371              		.cfi_endproc
+ 372              	.LFE76:
+ 374              		.section	.text.setPedestrianGreen,"ax",%progbits
+ 375              		.align	1
+ 376              		.global	setPedestrianGreen
+ 377              		.syntax unified
+ 378              		.thumb
+ 379              		.thumb_func
+ 381              	setPedestrianGreen:
+ 382              	.LFB77:
+  50:./Core/Src/traffic.c **** 
+  51:./Core/Src/traffic.c **** void setPedestrianGreen(){
+ 383              		.loc 1 51 26
+ 384              		.cfi_startproc
+ 385              		@ args = 0, pretend = 0, frame = 0
+ 386              		@ frame_needed = 1, uses_anonymous_args = 0
+ 387 0000 80B5     		push	{r7, lr}
+ 388              		.cfi_def_cfa_offset 8
+ 389              		.cfi_offset 7, -8
+ 390              		.cfi_offset 14, -4
+ 391 0002 00AF     		add	r7, sp, #0
+ 392              		.cfi_def_cfa_register 7
+  52:./Core/Src/traffic.c **** 	HAL_GPIO_WritePin(PedestrianLight_0_GPIO_Port, PedestrianLight_0_Pin, GPIO_PIN_RESET);
+ 393              		.loc 1 52 2
+ 394 0004 0022     		movs	r2, #0
+ 395 0006 4FF48061 		mov	r1, #1024
+ 396 000a 0548     		ldr	r0, .L29
+ 397 000c FFF7FEFF 		bl	HAL_GPIO_WritePin
+  53:./Core/Src/traffic.c **** 	HAL_GPIO_WritePin(PedestrianLight_1_GPIO_Port, PedestrianLight_1_Pin, GPIO_PIN_SET);
+ 398              		.loc 1 53 2
+ 399 0010 0122     		movs	r2, #1
+ 400 0012 4FF48071 		mov	r1, #256
+ 401 0016 0348     		ldr	r0, .L29+4
+ 402 0018 FFF7FEFF 		bl	HAL_GPIO_WritePin
+  54:./Core/Src/traffic.c **** }
+ 403              		.loc 1 54 1
+ 404 001c 00BF     		nop
+ 405 001e 80BD     		pop	{r7, pc}
+ 406              	.L30:
+ 407              		.align	2
+ 408              	.L29:
+ 409 0020 000C0140 		.word	1073810432
+ 410 0024 00080140 		.word	1073809408
+ 411              		.cfi_endproc
+ 412              	.LFE77:
+ 414              		.section	.text.setPedestrianYellow,"ax",%progbits
+ 415              		.align	1
+ 416              		.global	setPedestrianYellow
+ 417              		.syntax unified
+ 418              		.thumb
+ 419              		.thumb_func
+ 421              	setPedestrianYellow:
+ 422              	.LFB78:
+  55:./Core/Src/traffic.c **** 
+ARM GAS  C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s 			page 9
+
+
+  56:./Core/Src/traffic.c **** void setPedestrianYellow(){
+ 423              		.loc 1 56 27
+ 424              		.cfi_startproc
+ 425              		@ args = 0, pretend = 0, frame = 0
+ 426              		@ frame_needed = 1, uses_anonymous_args = 0
+ 427 0000 80B5     		push	{r7, lr}
+ 428              		.cfi_def_cfa_offset 8
+ 429              		.cfi_offset 7, -8
+ 430              		.cfi_offset 14, -4
+ 431 0002 00AF     		add	r7, sp, #0
+ 432              		.cfi_def_cfa_register 7
+  57:./Core/Src/traffic.c **** 	HAL_GPIO_WritePin(PedestrianLight_0_GPIO_Port, PedestrianLight_0_Pin, GPIO_PIN_SET);
+ 433              		.loc 1 57 2
+ 434 0004 0122     		movs	r2, #1
+ 435 0006 4FF48061 		mov	r1, #1024
+ 436 000a 0548     		ldr	r0, .L32
+ 437 000c FFF7FEFF 		bl	HAL_GPIO_WritePin
+  58:./Core/Src/traffic.c **** 	HAL_GPIO_WritePin(PedestrianLight_1_GPIO_Port, PedestrianLight_1_Pin, GPIO_PIN_SET);
+ 438              		.loc 1 58 2
+ 439 0010 0122     		movs	r2, #1
+ 440 0012 4FF48071 		mov	r1, #256
+ 441 0016 0348     		ldr	r0, .L32+4
+ 442 0018 FFF7FEFF 		bl	HAL_GPIO_WritePin
+  59:./Core/Src/traffic.c **** }
+ 443              		.loc 1 59 1
+ 444 001c 00BF     		nop
+ 445 001e 80BD     		pop	{r7, pc}
+ 446              	.L33:
+ 447              		.align	2
+ 448              	.L32:
+ 449 0020 000C0140 		.word	1073810432
+ 450 0024 00080140 		.word	1073809408
+ 451              		.cfi_endproc
+ 452              	.LFE78:
+ 454              		.section	.text.clearPedestrian,"ax",%progbits
+ 455              		.align	1
+ 456              		.global	clearPedestrian
+ 457              		.syntax unified
+ 458              		.thumb
+ 459              		.thumb_func
+ 461              	clearPedestrian:
+ 462              	.LFB79:
+  60:./Core/Src/traffic.c **** 
+  61:./Core/Src/traffic.c **** void clearPedestrian(){
+ 463              		.loc 1 61 23
+ 464              		.cfi_startproc
+ 465              		@ args = 0, pretend = 0, frame = 0
+ 466              		@ frame_needed = 1, uses_anonymous_args = 0
+ 467 0000 80B5     		push	{r7, lr}
+ 468              		.cfi_def_cfa_offset 8
+ 469              		.cfi_offset 7, -8
+ 470              		.cfi_offset 14, -4
+ 471 0002 00AF     		add	r7, sp, #0
+ 472              		.cfi_def_cfa_register 7
+  62:./Core/Src/traffic.c **** 	HAL_GPIO_WritePin(PedestrianLight_0_GPIO_Port, PedestrianLight_0_Pin, GPIO_PIN_RESET);
+ 473              		.loc 1 62 2
+ 474 0004 0022     		movs	r2, #0
+ARM GAS  C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s 			page 10
+
+
+ 475 0006 4FF48061 		mov	r1, #1024
+ 476 000a 0548     		ldr	r0, .L35
+ 477 000c FFF7FEFF 		bl	HAL_GPIO_WritePin
+  63:./Core/Src/traffic.c **** 	HAL_GPIO_WritePin(PedestrianLight_1_GPIO_Port, PedestrianLight_1_Pin, GPIO_PIN_RESET);
+ 478              		.loc 1 63 2
+ 479 0010 0022     		movs	r2, #0
+ 480 0012 4FF48071 		mov	r1, #256
+ 481 0016 0348     		ldr	r0, .L35+4
+ 482 0018 FFF7FEFF 		bl	HAL_GPIO_WritePin
+  64:./Core/Src/traffic.c **** }
+ 483              		.loc 1 64 1
+ 484 001c 00BF     		nop
+ 485 001e 80BD     		pop	{r7, pc}
+ 486              	.L36:
+ 487              		.align	2
+ 488              	.L35:
+ 489 0020 000C0140 		.word	1073810432
+ 490 0024 00080140 		.word	1073809408
+ 491              		.cfi_endproc
+ 492              	.LFE79:
+ 494              		.section	.text.toggleTraffic1Red,"ax",%progbits
+ 495              		.align	1
+ 496              		.global	toggleTraffic1Red
+ 497              		.syntax unified
+ 498              		.thumb
+ 499              		.thumb_func
+ 501              	toggleTraffic1Red:
+ 502              	.LFB80:
+  65:./Core/Src/traffic.c **** 
+  66:./Core/Src/traffic.c **** void toggleTraffic1Red(){
+ 503              		.loc 1 66 25
+ 504              		.cfi_startproc
+ 505              		@ args = 0, pretend = 0, frame = 0
+ 506              		@ frame_needed = 1, uses_anonymous_args = 0
+ 507 0000 80B5     		push	{r7, lr}
+ 508              		.cfi_def_cfa_offset 8
+ 509              		.cfi_offset 7, -8
+ 510              		.cfi_offset 14, -4
+ 511 0002 00AF     		add	r7, sp, #0
+ 512              		.cfi_def_cfa_register 7
+  67:./Core/Src/traffic.c **** 	// Only use when led is clear or red.
+  68:./Core/Src/traffic.c **** 	HAL_GPIO_TogglePin(TrafficLight1_0_GPIO_Port, TrafficLight1_0_Pin);
+ 513              		.loc 1 68 2
+ 514 0004 4FF48061 		mov	r1, #1024
+ 515 0008 0248     		ldr	r0, .L38
+ 516 000a FFF7FEFF 		bl	HAL_GPIO_TogglePin
+  69:./Core/Src/traffic.c **** }
+ 517              		.loc 1 69 1
+ 518 000e 00BF     		nop
+ 519 0010 80BD     		pop	{r7, pc}
+ 520              	.L39:
+ 521 0012 00BF     		.align	2
+ 522              	.L38:
+ 523 0014 00080140 		.word	1073809408
+ 524              		.cfi_endproc
+ 525              	.LFE80:
+ 527              		.section	.text.toggleTraffic2Red,"ax",%progbits
+ARM GAS  C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s 			page 11
+
+
+ 528              		.align	1
+ 529              		.global	toggleTraffic2Red
+ 530              		.syntax unified
+ 531              		.thumb
+ 532              		.thumb_func
+ 534              	toggleTraffic2Red:
+ 535              	.LFB81:
+  70:./Core/Src/traffic.c **** 
+  71:./Core/Src/traffic.c **** void toggleTraffic2Red(){
+ 536              		.loc 1 71 25
+ 537              		.cfi_startproc
+ 538              		@ args = 0, pretend = 0, frame = 0
+ 539              		@ frame_needed = 1, uses_anonymous_args = 0
+ 540 0000 80B5     		push	{r7, lr}
+ 541              		.cfi_def_cfa_offset 8
+ 542              		.cfi_offset 7, -8
+ 543              		.cfi_offset 14, -4
+ 544 0002 00AF     		add	r7, sp, #0
+ 545              		.cfi_def_cfa_register 7
+  72:./Core/Src/traffic.c **** 	// Only use when led is clear or red.
+  73:./Core/Src/traffic.c **** 	HAL_GPIO_TogglePin(TrafficLight2_0_GPIO_Port, TrafficLight2_0_Pin);
+ 546              		.loc 1 73 2
+ 547 0004 2021     		movs	r1, #32
+ 548 0006 0248     		ldr	r0, .L41
+ 549 0008 FFF7FEFF 		bl	HAL_GPIO_TogglePin
+  74:./Core/Src/traffic.c **** }
+ 550              		.loc 1 74 1
+ 551 000c 00BF     		nop
+ 552 000e 80BD     		pop	{r7, pc}
+ 553              	.L42:
+ 554              		.align	2
+ 555              	.L41:
+ 556 0010 000C0140 		.word	1073810432
+ 557              		.cfi_endproc
+ 558              	.LFE81:
+ 560              		.section	.text.toggleTraffic1Green,"ax",%progbits
+ 561              		.align	1
+ 562              		.global	toggleTraffic1Green
+ 563              		.syntax unified
+ 564              		.thumb
+ 565              		.thumb_func
+ 567              	toggleTraffic1Green:
+ 568              	.LFB82:
+  75:./Core/Src/traffic.c **** 
+  76:./Core/Src/traffic.c **** void toggleTraffic1Green(){
+ 569              		.loc 1 76 27
+ 570              		.cfi_startproc
+ 571              		@ args = 0, pretend = 0, frame = 0
+ 572              		@ frame_needed = 1, uses_anonymous_args = 0
+ 573 0000 80B5     		push	{r7, lr}
+ 574              		.cfi_def_cfa_offset 8
+ 575              		.cfi_offset 7, -8
+ 576              		.cfi_offset 14, -4
+ 577 0002 00AF     		add	r7, sp, #0
+ 578              		.cfi_def_cfa_register 7
+  77:./Core/Src/traffic.c **** 	// Only use when led is clear or green.
+  78:./Core/Src/traffic.c **** 	HAL_GPIO_TogglePin(TrafficLight1_1_GPIO_Port, TrafficLight1_1_Pin);
+ARM GAS  C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s 			page 12
+
+
+ 579              		.loc 1 78 2
+ 580 0004 0821     		movs	r1, #8
+ 581 0006 0248     		ldr	r0, .L44
+ 582 0008 FFF7FEFF 		bl	HAL_GPIO_TogglePin
+  79:./Core/Src/traffic.c **** }
+ 583              		.loc 1 79 1
+ 584 000c 00BF     		nop
+ 585 000e 80BD     		pop	{r7, pc}
+ 586              	.L45:
+ 587              		.align	2
+ 588              	.L44:
+ 589 0010 000C0140 		.word	1073810432
+ 590              		.cfi_endproc
+ 591              	.LFE82:
+ 593              		.section	.text.toggleTraffic2Green,"ax",%progbits
+ 594              		.align	1
+ 595              		.global	toggleTraffic2Green
+ 596              		.syntax unified
+ 597              		.thumb
+ 598              		.thumb_func
+ 600              	toggleTraffic2Green:
+ 601              	.LFB83:
+  80:./Core/Src/traffic.c **** 
+  81:./Core/Src/traffic.c **** void toggleTraffic2Green(){
+ 602              		.loc 1 81 27
+ 603              		.cfi_startproc
+ 604              		@ args = 0, pretend = 0, frame = 0
+ 605              		@ frame_needed = 1, uses_anonymous_args = 0
+ 606 0000 80B5     		push	{r7, lr}
+ 607              		.cfi_def_cfa_offset 8
+ 608              		.cfi_offset 7, -8
+ 609              		.cfi_offset 14, -4
+ 610 0002 00AF     		add	r7, sp, #0
+ 611              		.cfi_def_cfa_register 7
+  82:./Core/Src/traffic.c **** 	// Only use when led is clear or green.
+  83:./Core/Src/traffic.c **** 	HAL_GPIO_TogglePin(TrafficLight2_1_GPIO_Port, TrafficLight2_1_Pin);
+ 612              		.loc 1 83 2
+ 613 0004 1021     		movs	r1, #16
+ 614 0006 0248     		ldr	r0, .L47
+ 615 0008 FFF7FEFF 		bl	HAL_GPIO_TogglePin
+  84:./Core/Src/traffic.c **** }
+ 616              		.loc 1 84 1
+ 617 000c 00BF     		nop
+ 618 000e 80BD     		pop	{r7, pc}
+ 619              	.L48:
+ 620              		.align	2
+ 621              	.L47:
+ 622 0010 000C0140 		.word	1073810432
+ 623              		.cfi_endproc
+ 624              	.LFE83:
+ 626              		.section	.text.toggleTraffic1Yellow,"ax",%progbits
+ 627              		.align	1
+ 628              		.global	toggleTraffic1Yellow
+ 629              		.syntax unified
+ 630              		.thumb
+ 631              		.thumb_func
+ 633              	toggleTraffic1Yellow:
+ARM GAS  C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s 			page 13
+
+
+ 634              	.LFB84:
+  85:./Core/Src/traffic.c **** 
+  86:./Core/Src/traffic.c **** void toggleTraffic1Yellow(){
+ 635              		.loc 1 86 28
+ 636              		.cfi_startproc
+ 637              		@ args = 0, pretend = 0, frame = 0
+ 638              		@ frame_needed = 1, uses_anonymous_args = 0
+ 639 0000 80B5     		push	{r7, lr}
+ 640              		.cfi_def_cfa_offset 8
+ 641              		.cfi_offset 7, -8
+ 642              		.cfi_offset 14, -4
+ 643 0002 00AF     		add	r7, sp, #0
+ 644              		.cfi_def_cfa_register 7
+  87:./Core/Src/traffic.c **** 	// Only use when led is clear or yellow.
+  88:./Core/Src/traffic.c **** 	HAL_GPIO_TogglePin(TrafficLight1_0_GPIO_Port, TrafficLight1_0_Pin);
+ 645              		.loc 1 88 2
+ 646 0004 4FF48061 		mov	r1, #1024
+ 647 0008 0448     		ldr	r0, .L50
+ 648 000a FFF7FEFF 		bl	HAL_GPIO_TogglePin
+  89:./Core/Src/traffic.c **** 	HAL_GPIO_TogglePin(TrafficLight1_1_GPIO_Port, TrafficLight1_1_Pin);
+ 649              		.loc 1 89 2
+ 650 000e 0821     		movs	r1, #8
+ 651 0010 0348     		ldr	r0, .L50+4
+ 652 0012 FFF7FEFF 		bl	HAL_GPIO_TogglePin
+  90:./Core/Src/traffic.c **** }
+ 653              		.loc 1 90 1
+ 654 0016 00BF     		nop
+ 655 0018 80BD     		pop	{r7, pc}
+ 656              	.L51:
+ 657 001a 00BF     		.align	2
+ 658              	.L50:
+ 659 001c 00080140 		.word	1073809408
+ 660 0020 000C0140 		.word	1073810432
+ 661              		.cfi_endproc
+ 662              	.LFE84:
+ 664              		.section	.text.toggleTraffic2Yellow,"ax",%progbits
+ 665              		.align	1
+ 666              		.global	toggleTraffic2Yellow
+ 667              		.syntax unified
+ 668              		.thumb
+ 669              		.thumb_func
+ 671              	toggleTraffic2Yellow:
+ 672              	.LFB85:
+  91:./Core/Src/traffic.c **** 
+  92:./Core/Src/traffic.c **** void toggleTraffic2Yellow(){
+ 673              		.loc 1 92 28
+ 674              		.cfi_startproc
+ 675              		@ args = 0, pretend = 0, frame = 0
+ 676              		@ frame_needed = 1, uses_anonymous_args = 0
+ 677 0000 80B5     		push	{r7, lr}
+ 678              		.cfi_def_cfa_offset 8
+ 679              		.cfi_offset 7, -8
+ 680              		.cfi_offset 14, -4
+ 681 0002 00AF     		add	r7, sp, #0
+ 682              		.cfi_def_cfa_register 7
+  93:./Core/Src/traffic.c **** 	// Only use when led is clear or yellow.
+  94:./Core/Src/traffic.c **** 	HAL_GPIO_TogglePin(TrafficLight2_0_GPIO_Port, TrafficLight2_0_Pin);
+ARM GAS  C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s 			page 14
+
+
+ 683              		.loc 1 94 2
+ 684 0004 2021     		movs	r1, #32
+ 685 0006 0448     		ldr	r0, .L53
+ 686 0008 FFF7FEFF 		bl	HAL_GPIO_TogglePin
+  95:./Core/Src/traffic.c **** 	HAL_GPIO_TogglePin(TrafficLight2_1_GPIO_Port, TrafficLight2_1_Pin);
+ 687              		.loc 1 95 2
+ 688 000c 1021     		movs	r1, #16
+ 689 000e 0248     		ldr	r0, .L53
+ 690 0010 FFF7FEFF 		bl	HAL_GPIO_TogglePin
+  96:./Core/Src/traffic.c **** }
+ 691              		.loc 1 96 1
+ 692 0014 00BF     		nop
+ 693 0016 80BD     		pop	{r7, pc}
+ 694              	.L54:
+ 695              		.align	2
+ 696              	.L53:
+ 697 0018 000C0140 		.word	1073810432
+ 698              		.cfi_endproc
+ 699              	.LFE85:
+ 701              		.section	.text.acceptTraffic1Red,"ax",%progbits
+ 702              		.align	1
+ 703              		.global	acceptTraffic1Red
+ 704              		.syntax unified
+ 705              		.thumb
+ 706              		.thumb_func
+ 708              	acceptTraffic1Red:
+ 709              	.LFB86:
+  97:./Core/Src/traffic.c **** 
+  98:./Core/Src/traffic.c **** void acceptTraffic1Red(){
+ 710              		.loc 1 98 25
+ 711              		.cfi_startproc
+ 712              		@ args = 0, pretend = 0, frame = 0
+ 713              		@ frame_needed = 1, uses_anonymous_args = 0
+ 714              		@ link register save eliminated.
+ 715 0000 80B4     		push	{r7}
+ 716              		.cfi_def_cfa_offset 4
+ 717              		.cfi_offset 7, -4
+ 718 0002 00AF     		add	r7, sp, #0
+ 719              		.cfi_def_cfa_register 7
+  99:./Core/Src/traffic.c **** 	max_red1 = counter;
+ 720              		.loc 1 99 11
+ 721 0004 0B4B     		ldr	r3, .L57
+ 722 0006 1B68     		ldr	r3, [r3]
+ 723 0008 0B4A     		ldr	r2, .L57+4
+ 724 000a 1360     		str	r3, [r2]
+ 100:./Core/Src/traffic.c **** 	if(max_red1 <= max_yellow2) max_yellow2 = 1;
+ 725              		.loc 1 100 14
+ 726 000c 0A4B     		ldr	r3, .L57+4
+ 727 000e 1A68     		ldr	r2, [r3]
+ 728 0010 0A4B     		ldr	r3, .L57+8
+ 729 0012 1B68     		ldr	r3, [r3]
+ 730              		.loc 1 100 4
+ 731 0014 9A42     		cmp	r2, r3
+ 732 0016 02DC     		bgt	.L56
+ 733              		.loc 1 100 42 discriminator 1
+ 734 0018 084B     		ldr	r3, .L57+8
+ 735 001a 0122     		movs	r2, #1
+ARM GAS  C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s 			page 15
+
+
+ 736 001c 1A60     		str	r2, [r3]
+ 737              	.L56:
+ 101:./Core/Src/traffic.c **** 	max_green2 = max_red1 - max_yellow2;
+ 738              		.loc 1 101 24
+ 739 001e 064B     		ldr	r3, .L57+4
+ 740 0020 1A68     		ldr	r2, [r3]
+ 741 0022 064B     		ldr	r3, .L57+8
+ 742 0024 1B68     		ldr	r3, [r3]
+ 743 0026 D31A     		subs	r3, r2, r3
+ 744              		.loc 1 101 13
+ 745 0028 054A     		ldr	r2, .L57+12
+ 746 002a 1360     		str	r3, [r2]
+ 102:./Core/Src/traffic.c **** }
+ 747              		.loc 1 102 1
+ 748 002c 00BF     		nop
+ 749 002e BD46     		mov	sp, r7
+ 750              		.cfi_def_cfa_register 13
+ 751              		@ sp needed
+ 752 0030 80BC     		pop	{r7}
+ 753              		.cfi_restore 7
+ 754              		.cfi_def_cfa_offset 0
+ 755 0032 7047     		bx	lr
+ 756              	.L58:
+ 757              		.align	2
+ 758              	.L57:
+ 759 0034 00000000 		.word	counter
+ 760 0038 00000000 		.word	max_red1
+ 761 003c 00000000 		.word	max_yellow2
+ 762 0040 00000000 		.word	max_green2
+ 763              		.cfi_endproc
+ 764              	.LFE86:
+ 766              		.section	.text.acceptTraffic2Red,"ax",%progbits
+ 767              		.align	1
+ 768              		.global	acceptTraffic2Red
+ 769              		.syntax unified
+ 770              		.thumb
+ 771              		.thumb_func
+ 773              	acceptTraffic2Red:
+ 774              	.LFB87:
+ 103:./Core/Src/traffic.c **** 
+ 104:./Core/Src/traffic.c **** void acceptTraffic2Red(){
+ 775              		.loc 1 104 25
+ 776              		.cfi_startproc
+ 777              		@ args = 0, pretend = 0, frame = 0
+ 778              		@ frame_needed = 1, uses_anonymous_args = 0
+ 779              		@ link register save eliminated.
+ 780 0000 80B4     		push	{r7}
+ 781              		.cfi_def_cfa_offset 4
+ 782              		.cfi_offset 7, -4
+ 783 0002 00AF     		add	r7, sp, #0
+ 784              		.cfi_def_cfa_register 7
+ 105:./Core/Src/traffic.c **** 	max_red2 = counter;
+ 785              		.loc 1 105 11
+ 786 0004 0B4B     		ldr	r3, .L61
+ 787 0006 1B68     		ldr	r3, [r3]
+ 788 0008 0B4A     		ldr	r2, .L61+4
+ 789 000a 1360     		str	r3, [r2]
+ARM GAS  C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s 			page 16
+
+
+ 106:./Core/Src/traffic.c **** 	if(max_red2 <= max_yellow1) max_yellow1 = 1;
+ 790              		.loc 1 106 14
+ 791 000c 0A4B     		ldr	r3, .L61+4
+ 792 000e 1A68     		ldr	r2, [r3]
+ 793 0010 0A4B     		ldr	r3, .L61+8
+ 794 0012 1B68     		ldr	r3, [r3]
+ 795              		.loc 1 106 4
+ 796 0014 9A42     		cmp	r2, r3
+ 797 0016 02DC     		bgt	.L60
+ 798              		.loc 1 106 42 discriminator 1
+ 799 0018 084B     		ldr	r3, .L61+8
+ 800 001a 0122     		movs	r2, #1
+ 801 001c 1A60     		str	r2, [r3]
+ 802              	.L60:
+ 107:./Core/Src/traffic.c **** 	max_green1 = max_red2 - max_yellow1;
+ 803              		.loc 1 107 24
+ 804 001e 064B     		ldr	r3, .L61+4
+ 805 0020 1A68     		ldr	r2, [r3]
+ 806 0022 064B     		ldr	r3, .L61+8
+ 807 0024 1B68     		ldr	r3, [r3]
+ 808 0026 D31A     		subs	r3, r2, r3
+ 809              		.loc 1 107 13
+ 810 0028 054A     		ldr	r2, .L61+12
+ 811 002a 1360     		str	r3, [r2]
+ 108:./Core/Src/traffic.c **** }
+ 812              		.loc 1 108 1
+ 813 002c 00BF     		nop
+ 814 002e BD46     		mov	sp, r7
+ 815              		.cfi_def_cfa_register 13
+ 816              		@ sp needed
+ 817 0030 80BC     		pop	{r7}
+ 818              		.cfi_restore 7
+ 819              		.cfi_def_cfa_offset 0
+ 820 0032 7047     		bx	lr
+ 821              	.L62:
+ 822              		.align	2
+ 823              	.L61:
+ 824 0034 00000000 		.word	counter
+ 825 0038 00000000 		.word	max_red2
+ 826 003c 00000000 		.word	max_yellow1
+ 827 0040 00000000 		.word	max_green1
+ 828              		.cfi_endproc
+ 829              	.LFE87:
+ 831              		.section	.text.acceptTraffic1Green,"ax",%progbits
+ 832              		.align	1
+ 833              		.global	acceptTraffic1Green
+ 834              		.syntax unified
+ 835              		.thumb
+ 836              		.thumb_func
+ 838              	acceptTraffic1Green:
+ 839              	.LFB88:
+ 109:./Core/Src/traffic.c **** 
+ 110:./Core/Src/traffic.c **** void acceptTraffic1Green(){
+ 840              		.loc 1 110 27
+ 841              		.cfi_startproc
+ 842              		@ args = 0, pretend = 0, frame = 0
+ 843              		@ frame_needed = 1, uses_anonymous_args = 0
+ARM GAS  C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s 			page 17
+
+
+ 844              		@ link register save eliminated.
+ 845 0000 80B4     		push	{r7}
+ 846              		.cfi_def_cfa_offset 4
+ 847              		.cfi_offset 7, -4
+ 848 0002 00AF     		add	r7, sp, #0
+ 849              		.cfi_def_cfa_register 7
+ 111:./Core/Src/traffic.c **** 	max_green1 = counter;
+ 850              		.loc 1 111 13
+ 851 0004 074B     		ldr	r3, .L64
+ 852 0006 1B68     		ldr	r3, [r3]
+ 853 0008 074A     		ldr	r2, .L64+4
+ 854 000a 1360     		str	r3, [r2]
+ 112:./Core/Src/traffic.c **** 	max_yellow1 = max_red2 - max_green1;
+ 855              		.loc 1 112 25
+ 856 000c 074B     		ldr	r3, .L64+8
+ 857 000e 1A68     		ldr	r2, [r3]
+ 858 0010 054B     		ldr	r3, .L64+4
+ 859 0012 1B68     		ldr	r3, [r3]
+ 860 0014 D31A     		subs	r3, r2, r3
+ 861              		.loc 1 112 14
+ 862 0016 064A     		ldr	r2, .L64+12
+ 863 0018 1360     		str	r3, [r2]
+ 113:./Core/Src/traffic.c **** }
+ 864              		.loc 1 113 1
+ 865 001a 00BF     		nop
+ 866 001c BD46     		mov	sp, r7
+ 867              		.cfi_def_cfa_register 13
+ 868              		@ sp needed
+ 869 001e 80BC     		pop	{r7}
+ 870              		.cfi_restore 7
+ 871              		.cfi_def_cfa_offset 0
+ 872 0020 7047     		bx	lr
+ 873              	.L65:
+ 874 0022 00BF     		.align	2
+ 875              	.L64:
+ 876 0024 00000000 		.word	counter
+ 877 0028 00000000 		.word	max_green1
+ 878 002c 00000000 		.word	max_red2
+ 879 0030 00000000 		.word	max_yellow1
+ 880              		.cfi_endproc
+ 881              	.LFE88:
+ 883              		.section	.text.acceptTraffic2Green,"ax",%progbits
+ 884              		.align	1
+ 885              		.global	acceptTraffic2Green
+ 886              		.syntax unified
+ 887              		.thumb
+ 888              		.thumb_func
+ 890              	acceptTraffic2Green:
+ 891              	.LFB89:
+ 114:./Core/Src/traffic.c **** 
+ 115:./Core/Src/traffic.c **** void acceptTraffic2Green(){
+ 892              		.loc 1 115 27
+ 893              		.cfi_startproc
+ 894              		@ args = 0, pretend = 0, frame = 0
+ 895              		@ frame_needed = 1, uses_anonymous_args = 0
+ 896              		@ link register save eliminated.
+ 897 0000 80B4     		push	{r7}
+ARM GAS  C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s 			page 18
+
+
+ 898              		.cfi_def_cfa_offset 4
+ 899              		.cfi_offset 7, -4
+ 900 0002 00AF     		add	r7, sp, #0
+ 901              		.cfi_def_cfa_register 7
+ 116:./Core/Src/traffic.c **** 	max_green2 = counter;
+ 902              		.loc 1 116 13
+ 903 0004 074B     		ldr	r3, .L67
+ 904 0006 1B68     		ldr	r3, [r3]
+ 905 0008 074A     		ldr	r2, .L67+4
+ 906 000a 1360     		str	r3, [r2]
+ 117:./Core/Src/traffic.c **** 	max_yellow2 = max_red1 - max_green2;
+ 907              		.loc 1 117 25
+ 908 000c 074B     		ldr	r3, .L67+8
+ 909 000e 1A68     		ldr	r2, [r3]
+ 910 0010 054B     		ldr	r3, .L67+4
+ 911 0012 1B68     		ldr	r3, [r3]
+ 912 0014 D31A     		subs	r3, r2, r3
+ 913              		.loc 1 117 14
+ 914 0016 064A     		ldr	r2, .L67+12
+ 915 0018 1360     		str	r3, [r2]
+ 118:./Core/Src/traffic.c **** }
+ 916              		.loc 1 118 1
+ 917 001a 00BF     		nop
+ 918 001c BD46     		mov	sp, r7
+ 919              		.cfi_def_cfa_register 13
+ 920              		@ sp needed
+ 921 001e 80BC     		pop	{r7}
+ 922              		.cfi_restore 7
+ 923              		.cfi_def_cfa_offset 0
+ 924 0020 7047     		bx	lr
+ 925              	.L68:
+ 926 0022 00BF     		.align	2
+ 927              	.L67:
+ 928 0024 00000000 		.word	counter
+ 929 0028 00000000 		.word	max_green2
+ 930 002c 00000000 		.word	max_red1
+ 931 0030 00000000 		.word	max_yellow2
+ 932              		.cfi_endproc
+ 933              	.LFE89:
+ 935              		.section	.text.acceptTraffic1Yellow,"ax",%progbits
+ 936              		.align	1
+ 937              		.global	acceptTraffic1Yellow
+ 938              		.syntax unified
+ 939              		.thumb
+ 940              		.thumb_func
+ 942              	acceptTraffic1Yellow:
+ 943              	.LFB90:
+ 119:./Core/Src/traffic.c **** 
+ 120:./Core/Src/traffic.c **** void acceptTraffic1Yellow(){
+ 944              		.loc 1 120 28
+ 945              		.cfi_startproc
+ 946              		@ args = 0, pretend = 0, frame = 0
+ 947              		@ frame_needed = 1, uses_anonymous_args = 0
+ 948              		@ link register save eliminated.
+ 949 0000 80B4     		push	{r7}
+ 950              		.cfi_def_cfa_offset 4
+ 951              		.cfi_offset 7, -4
+ARM GAS  C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s 			page 19
+
+
+ 952 0002 00AF     		add	r7, sp, #0
+ 953              		.cfi_def_cfa_register 7
+ 121:./Core/Src/traffic.c **** 	max_yellow1 = counter;
+ 954              		.loc 1 121 14
+ 955 0004 074B     		ldr	r3, .L70
+ 956 0006 1B68     		ldr	r3, [r3]
+ 957 0008 074A     		ldr	r2, .L70+4
+ 958 000a 1360     		str	r3, [r2]
+ 122:./Core/Src/traffic.c **** 	max_green1 = max_red2 - max_yellow1;
+ 959              		.loc 1 122 24
+ 960 000c 074B     		ldr	r3, .L70+8
+ 961 000e 1A68     		ldr	r2, [r3]
+ 962 0010 054B     		ldr	r3, .L70+4
+ 963 0012 1B68     		ldr	r3, [r3]
+ 964 0014 D31A     		subs	r3, r2, r3
+ 965              		.loc 1 122 13
+ 966 0016 064A     		ldr	r2, .L70+12
+ 967 0018 1360     		str	r3, [r2]
+ 123:./Core/Src/traffic.c **** }
+ 968              		.loc 1 123 1
+ 969 001a 00BF     		nop
+ 970 001c BD46     		mov	sp, r7
+ 971              		.cfi_def_cfa_register 13
+ 972              		@ sp needed
+ 973 001e 80BC     		pop	{r7}
+ 974              		.cfi_restore 7
+ 975              		.cfi_def_cfa_offset 0
+ 976 0020 7047     		bx	lr
+ 977              	.L71:
+ 978 0022 00BF     		.align	2
+ 979              	.L70:
+ 980 0024 00000000 		.word	counter
+ 981 0028 00000000 		.word	max_yellow1
+ 982 002c 00000000 		.word	max_red2
+ 983 0030 00000000 		.word	max_green1
+ 984              		.cfi_endproc
+ 985              	.LFE90:
+ 987              		.section	.text.acceptTraffic2Yellow,"ax",%progbits
+ 988              		.align	1
+ 989              		.global	acceptTraffic2Yellow
+ 990              		.syntax unified
+ 991              		.thumb
+ 992              		.thumb_func
+ 994              	acceptTraffic2Yellow:
+ 995              	.LFB91:
+ 124:./Core/Src/traffic.c **** 
+ 125:./Core/Src/traffic.c **** void acceptTraffic2Yellow(){
+ 996              		.loc 1 125 28
+ 997              		.cfi_startproc
+ 998              		@ args = 0, pretend = 0, frame = 0
+ 999              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1000              		@ link register save eliminated.
+ 1001 0000 80B4     		push	{r7}
+ 1002              		.cfi_def_cfa_offset 4
+ 1003              		.cfi_offset 7, -4
+ 1004 0002 00AF     		add	r7, sp, #0
+ 1005              		.cfi_def_cfa_register 7
+ARM GAS  C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s 			page 20
+
+
+ 126:./Core/Src/traffic.c **** 	max_yellow2 = counter;
+ 1006              		.loc 1 126 14
+ 1007 0004 074B     		ldr	r3, .L73
+ 1008 0006 1B68     		ldr	r3, [r3]
+ 1009 0008 074A     		ldr	r2, .L73+4
+ 1010 000a 1360     		str	r3, [r2]
+ 127:./Core/Src/traffic.c **** 	max_green2 = max_red1 - max_yellow2;
+ 1011              		.loc 1 127 24
+ 1012 000c 074B     		ldr	r3, .L73+8
+ 1013 000e 1A68     		ldr	r2, [r3]
+ 1014 0010 054B     		ldr	r3, .L73+4
+ 1015 0012 1B68     		ldr	r3, [r3]
+ 1016 0014 D31A     		subs	r3, r2, r3
+ 1017              		.loc 1 127 13
+ 1018 0016 064A     		ldr	r2, .L73+12
+ 1019 0018 1360     		str	r3, [r2]
+ 128:./Core/Src/traffic.c **** }
+ 1020              		.loc 1 128 1
+ 1021 001a 00BF     		nop
+ 1022 001c BD46     		mov	sp, r7
+ 1023              		.cfi_def_cfa_register 13
+ 1024              		@ sp needed
+ 1025 001e 80BC     		pop	{r7}
+ 1026              		.cfi_restore 7
+ 1027              		.cfi_def_cfa_offset 0
+ 1028 0020 7047     		bx	lr
+ 1029              	.L74:
+ 1030 0022 00BF     		.align	2
+ 1031              	.L73:
+ 1032 0024 00000000 		.word	counter
+ 1033 0028 00000000 		.word	max_yellow2
+ 1034 002c 00000000 		.word	max_red1
+ 1035 0030 00000000 		.word	max_green2
+ 1036              		.cfi_endproc
+ 1037              	.LFE91:
+ 1039              		.section	.rodata
+ 1040              		.align	2
+ 1041              	.LC0:
+ 1042 0000 21375345 		.ascii	"!7SEG:%d%d#\015\012\000"
+ 1042      473A2564 
+ 1042      2564230D 
+ 1042      0A00
+ 1043              		.section	.text.displayCounter,"ax",%progbits
+ 1044              		.align	1
+ 1045              		.global	displayCounter
+ 1046              		.syntax unified
+ 1047              		.thumb
+ 1048              		.thumb_func
+ 1050              	displayCounter:
+ 1051              	.LFB92:
+ 129:./Core/Src/traffic.c **** 
+ 130:./Core/Src/traffic.c **** void displayCounter(){
+ 1052              		.loc 1 130 22
+ 1053              		.cfi_startproc
+ 1054              		@ args = 0, pretend = 0, frame = 0
+ 1055              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1056 0000 80B5     		push	{r7, lr}
+ARM GAS  C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s 			page 21
+
+
+ 1057              		.cfi_def_cfa_offset 8
+ 1058              		.cfi_offset 7, -8
+ 1059              		.cfi_offset 14, -4
+ 1060 0002 00AF     		add	r7, sp, #0
+ 1061              		.cfi_def_cfa_register 7
+ 131:./Core/Src/traffic.c **** 	sprintf(str, "!7SEG:%d%d#\r\n", counter/10, counter%10);
+ 1062              		.loc 1 131 2
+ 1063 0004 104B     		ldr	r3, .L76
+ 1064 0006 1B68     		ldr	r3, [r3]
+ 1065 0008 104A     		ldr	r2, .L76+4
+ 1066 000a 82FB0312 		smull	r1, r2, r2, r3
+ 1067 000e 9210     		asrs	r2, r2, #2
+ 1068 0010 DB17     		asrs	r3, r3, #31
+ 1069 0012 D01A     		subs	r0, r2, r3
+ 1070 0014 0C4B     		ldr	r3, .L76
+ 1071 0016 1A68     		ldr	r2, [r3]
+ 1072 0018 0C4B     		ldr	r3, .L76+4
+ 1073 001a 83FB0213 		smull	r1, r3, r3, r2
+ 1074 001e 9910     		asrs	r1, r3, #2
+ 1075 0020 D317     		asrs	r3, r2, #31
+ 1076 0022 C91A     		subs	r1, r1, r3
+ 1077 0024 0B46     		mov	r3, r1
+ 1078 0026 9B00     		lsls	r3, r3, #2
+ 1079 0028 0B44     		add	r3, r3, r1
+ 1080 002a 5B00     		lsls	r3, r3, #1
+ 1081 002c D11A     		subs	r1, r2, r3
+ 1082 002e 0B46     		mov	r3, r1
+ 1083 0030 0246     		mov	r2, r0
+ 1084 0032 0749     		ldr	r1, .L76+8
+ 1085 0034 0748     		ldr	r0, .L76+12
+ 1086 0036 FFF7FEFF 		bl	sprintf
+ 132:./Core/Src/traffic.c **** 	HAL_UART_Transmit_IT(&huart2, (void*)str, 15);
+ 1087              		.loc 1 132 2
+ 1088 003a 0F22     		movs	r2, #15
+ 1089 003c 0549     		ldr	r1, .L76+12
+ 1090 003e 0648     		ldr	r0, .L76+16
+ 1091 0040 FFF7FEFF 		bl	HAL_UART_Transmit_IT
+ 133:./Core/Src/traffic.c **** }
+ 1092              		.loc 1 133 1
+ 1093 0044 00BF     		nop
+ 1094 0046 80BD     		pop	{r7, pc}
+ 1095              	.L77:
+ 1096              		.align	2
+ 1097              	.L76:
+ 1098 0048 00000000 		.word	counter
+ 1099 004c 67666666 		.word	1717986919
+ 1100 0050 00000000 		.word	.LC0
+ 1101 0054 00000000 		.word	str
+ 1102 0058 00000000 		.word	huart2
+ 1103              		.cfi_endproc
+ 1104              	.LFE92:
+ 1106              		.text
+ 1107              	.Letext0:
+ 1108              		.file 2 "c:\\st\\stm32cubeide_1.10.1\\stm32cubeide\\plugins\\com.st.stm32cube.ide.mcu.externaltool
+ 1109              		.file 3 "c:\\st\\stm32cubeide_1.10.1\\stm32cubeide\\plugins\\com.st.stm32cube.ide.mcu.externaltool
+ 1110              		.file 4 "Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h"
+ 1111              		.file 5 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h"
+ARM GAS  C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s 			page 22
+
+
+ 1112              		.file 6 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h"
+ 1113              		.file 7 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h"
+ 1114              		.file 8 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h"
+ 1115              		.file 9 "Core/Inc/main.h"
+ 1116              		.file 10 "Core/Inc/global.h"
+ 1117              		.file 11 "c:\\st\\stm32cubeide_1.10.1\\stm32cubeide\\plugins\\com.st.stm32cube.ide.mcu.externaltoo
+ARM GAS  C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s 			page 23
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 traffic.c
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:18     .text.setTraffic1Red:0000000000000000 $t
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:24     .text.setTraffic1Red:0000000000000000 setTraffic1Red
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:53     .text.setTraffic1Red:0000000000000020 $d
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:59     .text.setTraffic2Red:0000000000000000 $t
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:65     .text.setTraffic2Red:0000000000000000 setTraffic2Red
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:93     .text.setTraffic2Red:000000000000001c $d
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:98     .text.setTraffic1Green:0000000000000000 $t
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:104    .text.setTraffic1Green:0000000000000000 setTraffic1Green
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:132    .text.setTraffic1Green:0000000000000020 $d
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:138    .text.clearTraffic1:0000000000000000 $t
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:144    .text.clearTraffic1:0000000000000000 clearTraffic1
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:172    .text.clearTraffic1:0000000000000020 $d
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:178    .text.setTraffic2Green:0000000000000000 $t
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:184    .text.setTraffic2Green:0000000000000000 setTraffic2Green
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:212    .text.setTraffic2Green:000000000000001c $d
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:217    .text.setTraffic1Yellow:0000000000000000 $t
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:223    .text.setTraffic1Yellow:0000000000000000 setTraffic1Yellow
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:251    .text.setTraffic1Yellow:0000000000000020 $d
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:257    .text.setTraffic2Yellow:0000000000000000 $t
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:263    .text.setTraffic2Yellow:0000000000000000 setTraffic2Yellow
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:291    .text.setTraffic2Yellow:000000000000001c $d
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:296    .text.clearTraffic2:0000000000000000 $t
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:302    .text.clearTraffic2:0000000000000000 clearTraffic2
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:330    .text.clearTraffic2:000000000000001c $d
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:335    .text.setPedestrianRed:0000000000000000 $t
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:341    .text.setPedestrianRed:0000000000000000 setPedestrianRed
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:369    .text.setPedestrianRed:0000000000000020 $d
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:375    .text.setPedestrianGreen:0000000000000000 $t
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:381    .text.setPedestrianGreen:0000000000000000 setPedestrianGreen
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:409    .text.setPedestrianGreen:0000000000000020 $d
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:415    .text.setPedestrianYellow:0000000000000000 $t
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:421    .text.setPedestrianYellow:0000000000000000 setPedestrianYellow
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:449    .text.setPedestrianYellow:0000000000000020 $d
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:455    .text.clearPedestrian:0000000000000000 $t
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:461    .text.clearPedestrian:0000000000000000 clearPedestrian
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:489    .text.clearPedestrian:0000000000000020 $d
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:495    .text.toggleTraffic1Red:0000000000000000 $t
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:501    .text.toggleTraffic1Red:0000000000000000 toggleTraffic1Red
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:523    .text.toggleTraffic1Red:0000000000000014 $d
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:528    .text.toggleTraffic2Red:0000000000000000 $t
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:534    .text.toggleTraffic2Red:0000000000000000 toggleTraffic2Red
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:556    .text.toggleTraffic2Red:0000000000000010 $d
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:561    .text.toggleTraffic1Green:0000000000000000 $t
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:567    .text.toggleTraffic1Green:0000000000000000 toggleTraffic1Green
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:589    .text.toggleTraffic1Green:0000000000000010 $d
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:594    .text.toggleTraffic2Green:0000000000000000 $t
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:600    .text.toggleTraffic2Green:0000000000000000 toggleTraffic2Green
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:622    .text.toggleTraffic2Green:0000000000000010 $d
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:627    .text.toggleTraffic1Yellow:0000000000000000 $t
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:633    .text.toggleTraffic1Yellow:0000000000000000 toggleTraffic1Yellow
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:659    .text.toggleTraffic1Yellow:000000000000001c $d
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:665    .text.toggleTraffic2Yellow:0000000000000000 $t
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:671    .text.toggleTraffic2Yellow:0000000000000000 toggleTraffic2Yellow
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:697    .text.toggleTraffic2Yellow:0000000000000018 $d
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:702    .text.acceptTraffic1Red:0000000000000000 $t
+ARM GAS  C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s 			page 24
+
+
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:708    .text.acceptTraffic1Red:0000000000000000 acceptTraffic1Red
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:759    .text.acceptTraffic1Red:0000000000000034 $d
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:767    .text.acceptTraffic2Red:0000000000000000 $t
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:773    .text.acceptTraffic2Red:0000000000000000 acceptTraffic2Red
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:824    .text.acceptTraffic2Red:0000000000000034 $d
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:832    .text.acceptTraffic1Green:0000000000000000 $t
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:838    .text.acceptTraffic1Green:0000000000000000 acceptTraffic1Green
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:876    .text.acceptTraffic1Green:0000000000000024 $d
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:884    .text.acceptTraffic2Green:0000000000000000 $t
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:890    .text.acceptTraffic2Green:0000000000000000 acceptTraffic2Green
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:928    .text.acceptTraffic2Green:0000000000000024 $d
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:936    .text.acceptTraffic1Yellow:0000000000000000 $t
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:942    .text.acceptTraffic1Yellow:0000000000000000 acceptTraffic1Yellow
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:980    .text.acceptTraffic1Yellow:0000000000000024 $d
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:988    .text.acceptTraffic2Yellow:0000000000000000 $t
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:994    .text.acceptTraffic2Yellow:0000000000000000 acceptTraffic2Yellow
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:1032   .text.acceptTraffic2Yellow:0000000000000024 $d
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:1040   .rodata:0000000000000000 $d
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:1044   .text.displayCounter:0000000000000000 $t
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:1050   .text.displayCounter:0000000000000000 displayCounter
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s:1098   .text.displayCounter:0000000000000048 $d
+                           .group:0000000000000000 wm4.0.cb5f01749778df26340c4505df3d34d0
+                           .group:0000000000000000 wm4.stm32f1xx_hal_conf.h.21.98635006afa9a018cfa5e0632ed4968b
+                           .group:0000000000000000 wm4.stm32f1xx.h.39.208bb8a61c892b7c37d899c49a031330
+                           .group:0000000000000000 wm4.stm32f103xb.h.38.ec967d5ad9d3269cb0788eebda048e38
+                           .group:0000000000000000 wm4._newlib_version.h.4.bfdf54b0af045d4a71376ae00f63a22c
+                           .group:0000000000000000 wm4.features.h.33.318b64d71e0957639cfb30f1db1f7ec8
+                           .group:0000000000000000 wm4._default_types.h.15.247e5cd201eca3442cbf5404108c4935
+                           .group:0000000000000000 wm4._intsup.h.10.48bafbb683905c4daa4565a85aeeb264
+                           .group:0000000000000000 wm4._stdint.h.10.c24fa3af3bc1706662bb5593a907e841
+                           .group:0000000000000000 wm4.stdint.h.23.d53047a68f4a85177f80b422d52785ed
+                           .group:0000000000000000 wm4.cmsis_version.h.32.4d5822004c01a829a975260e854b5f8e
+                           .group:0000000000000000 wm4.core_cm3.h.66.fc46cac19810db8f98d67da7ef88f42c
+                           .group:0000000000000000 wm4.cmsis_gcc.h.26.4f5798e999d5690b80e6ded3ecc94b37
+                           .group:0000000000000000 wm4.core_cm3.h.127.f4474120f1a7524deb56f9d74ff175da
+                           .group:0000000000000000 wm4.stm32f103xb.h.573.10249aa7473ca93be896fed94046a725
+                           .group:0000000000000000 wm4.stm32f1xx.h.162.96b09079a093c34dbd7f0b85cbd0ddee
+                           .group:0000000000000000 wm4.stm32_hal_legacy.h.23.91ba5b544a4c2be2620a1e7ff0049e10
+                           .group:0000000000000000 wm4.stddef.h.39.144cf5ddcd53cbfdac30259dc1a6c87f
+                           .group:0000000000000000 wm4.stm32f1xx_hal_def.h.57.18d01ce1aa74e9fb44dbf16f821a574a
+                           .group:0000000000000000 wm4.stm32f1xx_hal_rcc.h.95.21591bbc513aaa813c0b8640c3b32517
+                           .group:0000000000000000 wm4.stm32f1xx_hal_rcc_ex.h.22.8763f99bc1e3e2dcf0febe9161d81b37
+                           .group:0000000000000000 wm4.stm32f1xx_hal_rcc.h.1202.f8e5f9e0cf4eef7840facf5396029056
+                           .group:0000000000000000 wm4.stm32f1xx_hal_gpio.h.22.fa638d688dcc57ca806fe6a7831b0d04
+                           .group:0000000000000000 wm4.stm32f1xx_hal_gpio_ex.h.22.51a50ef3512cd78017ce666a32d364bf
+                           .group:0000000000000000 wm4.stm32f1xx_hal_gpio.h.263.f5ebf2f545ade59412ab9261c8e35dc4
+                           .group:0000000000000000 wm4.stm32f1xx_hal_exti.h.22.e26491d042c8079c3ca67eca341af862
+                           .group:0000000000000000 wm4.stm32f1xx_hal_dma.h.22.3c14338534886827bf3aeaa2a7f412a1
+                           .group:0000000000000000 wm4.stm32f1xx_hal_dma_ex.h.22.001ac4d7f81ccbdcae49bd65c13858c8
+                           .group:0000000000000000 wm4.stm32f1xx_hal_dma.h.409.cafcd2cfe701091535636be537c18293
+                           .group:0000000000000000 wm4.stm32f1xx_hal_cortex.h.22.b5f4174bb6a50d95405567b8f50e0900
+                           .group:0000000000000000 wm4.stm32f1xx_hal_flash.h.22.5cea9a7210e6315b41724b47b5fdf203
+                           .group:0000000000000000 wm4.stm32f1xx_hal_flash_ex.h.22.d4e19c21f2a86fa2f8ec2c2d5f1ab2af
+                           .group:0000000000000000 wm4.stm32f1xx_hal_pwr.h.22.3438c476faafc3240bf146f143df3fcd
+                           .group:0000000000000000 wm4.stm32f1xx_hal_tim.h.22.a16e206564e97dbace9faae59a0d6008
+                           .group:0000000000000000 wm4.stm32f1xx_hal_uart.h.22.5f7992e497faa36aa98f09f7214f4dbb
+                           .group:0000000000000000 wm4.stm32f1xx_hal.h.88.91065c0692bed6019c34f1e9c00589fd
+ARM GAS  C:\Users\ULTIMA~1\AppData\Local\Temp\ccgcu71A.s 			page 25
+
+
+                           .group:0000000000000000 wm4.newlib.h.8.7cb3972cd43265932d4782d5eb589854
+                           .group:0000000000000000 wm4.ieeefp.h.77.25247dc27dbe3b23bfe98c2dc18f6ac5
+                           .group:0000000000000000 wm4.config.h.224.c701144a7b0518c6ee9b9b5465b79f81
+                           .group:0000000000000000 wm4._ansi.h.31.de524f58584151836e90d8620a16f8e8
+                           .group:0000000000000000 wm4.stdio.h.31.7c0e28c411445f3f9c5b11accf882760
+                           .group:0000000000000000 wm4.stddef.h.155.ba788add86a0e365f264484f110c3c29
+                           .group:0000000000000000 wm4.cdefs.h.49.39045112216f6a021dbdffe3bf5accce
+                           .group:0000000000000000 wm4.stdarg.h.34.3a23a216c0c293b3d2ea2e89281481e6
+                           .group:0000000000000000 wm4._types.h.20.dd0d04dca3800a0d2a6129b87f3adbb2
+                           .group:0000000000000000 wm4.stddef.h.155.3588ebfdd1e8c7ede80509bb9c3b8009
+                           .group:0000000000000000 wm4._types.h.127.34941de1b2539d59d5cac00e0dd27a45
+                           .group:0000000000000000 wm4.reent.h.17.e292bf8b0bec6c96e131a54347145a30
+                           .group:0000000000000000 wm4.lock.h.2.1461d1fff82dffe8bfddc23307f6484f
+                           .group:0000000000000000 wm4.reent.h.77.dcd6129ff07fe81bd5636db29abe53b2
+                           .group:0000000000000000 wm4.types.h.40.8b6acba56cefbb11746718204edc8f5e
+                           .group:0000000000000000 wm4._endian.h.31.65a10590763c3dde1ac4a7f66d7d4891
+                           .group:0000000000000000 wm4.endian.h.9.49f3a4695c1b61e8a0808de3c4a106cb
+                           .group:0000000000000000 wm4._timeval.h.32.bec3221fa7a9bb0bdde696c9c57e47d2
+                           .group:0000000000000000 wm4.timespec.h.41.d855182eb0e690443ab8651bcedca6e1
+                           .group:0000000000000000 wm4.select.h.19.40cd3f2bfc456b193b790c2754690ebf
+                           .group:0000000000000000 wm4.types.h.51.5571ec98f267d17d3c670b7a3ba33afa
+                           .group:0000000000000000 wm4.sched.h.22.c60982713a5c428609783c78f9c78d95
+                           .group:0000000000000000 wm4._pthreadtypes.h.36.fcee9961c35163dde6267ef772ad1972
+                           .group:0000000000000000 wm4.stdio.h.2.4aa87247282eca6c8f36f9de33d8df1a
+                           .group:0000000000000000 wm4.stdio.h.81.932d0c162786b883f622b8d05c120c78
+                           .group:0000000000000000 wm4.main.h.66.f6c32797044e6683294f2b743aea3471
+                           .group:0000000000000000 wm4.button.h.9.c6366124cd589a43ad584300c9157129
+                           .group:0000000000000000 wm4.scheduler.h.4.83ce304dfb906999b52630f400dd3d97
+                           .group:0000000000000000 wm4.global.h.12.cde98173854399505bb16cbc58c7b8b7
+
+UNDEFINED SYMBOLS
+HAL_GPIO_WritePin
+HAL_GPIO_TogglePin
+counter
+max_red1
+max_yellow2
+max_green2
+max_red2
+max_yellow1
+max_green1
+sprintf
+HAL_UART_Transmit_IT
+str
+huart2

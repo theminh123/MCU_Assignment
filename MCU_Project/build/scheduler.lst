@@ -1,0 +1,819 @@
+ARM GAS  C:\Users\ULTIMA~1\AppData\Local\Temp\cc9iFp0M.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"scheduler.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.global	SCH_tasks_G
+  18              		.section	.bss.SCH_tasks_G,"aw",%nobits
+  19              		.align	2
+  22              	SCH_tasks_G:
+  23 0000 00000000 		.space	800
+  23      00000000 
+  23      00000000 
+  23      00000000 
+  23      00000000 
+  24              		.section	.text.SCH_Init,"ax",%progbits
+  25              		.align	1
+  26              		.global	SCH_Init
+  27              		.syntax unified
+  28              		.thumb
+  29              		.thumb_func
+  31              	SCH_Init:
+  32              	.LFB68:
+  33              		.file 1 "./Core/Src/scheduler.c"
+   1:./Core/Src/scheduler.c **** 
+   2:./Core/Src/scheduler.c **** #include "scheduler.h"
+   3:./Core/Src/scheduler.c **** 
+   4:./Core/Src/scheduler.c **** sTask SCH_tasks_G[SCH_MAX_TASKS];
+   5:./Core/Src/scheduler.c **** 
+   6:./Core/Src/scheduler.c **** void SCH_Init(void){
+  34              		.loc 1 6 20
+  35              		.cfi_startproc
+  36              		@ args = 0, pretend = 0, frame = 8
+  37              		@ frame_needed = 1, uses_anonymous_args = 0
+  38 0000 80B5     		push	{r7, lr}
+  39              		.cfi_def_cfa_offset 8
+  40              		.cfi_offset 7, -8
+  41              		.cfi_offset 14, -4
+  42 0002 82B0     		sub	sp, sp, #8
+  43              		.cfi_def_cfa_offset 16
+  44 0004 00AF     		add	r7, sp, #0
+  45              		.cfi_def_cfa_register 7
+   7:./Core/Src/scheduler.c **** 	unsigned char i;
+   8:./Core/Src/scheduler.c **** 	for(i = 0; i < SCH_MAX_TASKS; i++){
+  46              		.loc 1 8 8
+  47 0006 0023     		movs	r3, #0
+  48 0008 FB71     		strb	r3, [r7, #7]
+ARM GAS  C:\Users\ULTIMA~1\AppData\Local\Temp\cc9iFp0M.s 			page 2
+
+
+  49              		.loc 1 8 2
+  50 000a 06E0     		b	.L2
+  51              	.L3:
+   9:./Core/Src/scheduler.c **** 		SCH_Delete_Task(i);
+  52              		.loc 1 9 3 discriminator 3
+  53 000c FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+  54 000e 1846     		mov	r0, r3
+  55 0010 FFF7FEFF 		bl	SCH_Delete_Task
+   8:./Core/Src/scheduler.c **** 		SCH_Delete_Task(i);
+  56              		.loc 1 8 33 discriminator 3
+  57 0014 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+  58 0016 0133     		adds	r3, r3, #1
+  59 0018 FB71     		strb	r3, [r7, #7]
+  60              	.L2:
+   8:./Core/Src/scheduler.c **** 		SCH_Delete_Task(i);
+  61              		.loc 1 8 2 discriminator 1
+  62 001a FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+  63 001c 272B     		cmp	r3, #39
+  64 001e F5D9     		bls	.L3
+  10:./Core/Src/scheduler.c **** 	}
+  11:./Core/Src/scheduler.c **** }
+  65              		.loc 1 11 1
+  66 0020 00BF     		nop
+  67 0022 00BF     		nop
+  68 0024 0837     		adds	r7, r7, #8
+  69              		.cfi_def_cfa_offset 8
+  70 0026 BD46     		mov	sp, r7
+  71              		.cfi_def_cfa_register 13
+  72              		@ sp needed
+  73 0028 80BD     		pop	{r7, pc}
+  74              		.cfi_endproc
+  75              	.LFE68:
+  77              		.section	.text.SCH_Update,"ax",%progbits
+  78              		.align	1
+  79              		.global	SCH_Update
+  80              		.syntax unified
+  81              		.thumb
+  82              		.thumb_func
+  84              	SCH_Update:
+  85              	.LFB69:
+  12:./Core/Src/scheduler.c **** 
+  13:./Core/Src/scheduler.c **** void SCH_Update(void){
+  86              		.loc 1 13 22
+  87              		.cfi_startproc
+  88              		@ args = 0, pretend = 0, frame = 8
+  89              		@ frame_needed = 1, uses_anonymous_args = 0
+  90              		@ link register save eliminated.
+  91 0000 80B4     		push	{r7}
+  92              		.cfi_def_cfa_offset 4
+  93              		.cfi_offset 7, -4
+  94 0002 83B0     		sub	sp, sp, #12
+  95              		.cfi_def_cfa_offset 16
+  96 0004 00AF     		add	r7, sp, #0
+  97              		.cfi_def_cfa_register 7
+  14:./Core/Src/scheduler.c **** 	uint32_t index;
+  15:./Core/Src/scheduler.c **** 	for(index = 0; index < SCH_MAX_TASKS; index++){
+  98              		.loc 1 15 12
+ARM GAS  C:\Users\ULTIMA~1\AppData\Local\Temp\cc9iFp0M.s 			page 3
+
+
+  99 0006 0023     		movs	r3, #0
+ 100 0008 7B60     		str	r3, [r7, #4]
+ 101              		.loc 1 15 2
+ 102 000a 52E0     		b	.L5
+ 103              	.L8:
+  16:./Core/Src/scheduler.c **** 		if(SCH_tasks_G[index].pTask){
+ 104              		.loc 1 16 24
+ 105 000c 2D49     		ldr	r1, .L9
+ 106 000e 7A68     		ldr	r2, [r7, #4]
+ 107 0010 1346     		mov	r3, r2
+ 108 0012 9B00     		lsls	r3, r3, #2
+ 109 0014 1344     		add	r3, r3, r2
+ 110 0016 9B00     		lsls	r3, r3, #2
+ 111 0018 0B44     		add	r3, r3, r1
+ 112 001a 1B68     		ldr	r3, [r3]
+ 113              		.loc 1 16 5
+ 114 001c 002B     		cmp	r3, #0
+ 115 001e 45D0     		beq	.L6
+  17:./Core/Src/scheduler.c **** 			if(SCH_tasks_G[index].Delay > 0){
+ 116              		.loc 1 17 25
+ 117 0020 2849     		ldr	r1, .L9
+ 118 0022 7A68     		ldr	r2, [r7, #4]
+ 119 0024 1346     		mov	r3, r2
+ 120 0026 9B00     		lsls	r3, r3, #2
+ 121 0028 1344     		add	r3, r3, r2
+ 122 002a 9B00     		lsls	r3, r3, #2
+ 123 002c 0B44     		add	r3, r3, r1
+ 124 002e 0433     		adds	r3, r3, #4
+ 125 0030 1B68     		ldr	r3, [r3]
+ 126              		.loc 1 17 6
+ 127 0032 002B     		cmp	r3, #0
+ 128 0034 13D0     		beq	.L7
+  18:./Core/Src/scheduler.c **** 				SCH_tasks_G[index].Delay--;
+ 129              		.loc 1 18 23
+ 130 0036 2349     		ldr	r1, .L9
+ 131 0038 7A68     		ldr	r2, [r7, #4]
+ 132 003a 1346     		mov	r3, r2
+ 133 003c 9B00     		lsls	r3, r3, #2
+ 134 003e 1344     		add	r3, r3, r2
+ 135 0040 9B00     		lsls	r3, r3, #2
+ 136 0042 0B44     		add	r3, r3, r1
+ 137 0044 0433     		adds	r3, r3, #4
+ 138 0046 1B68     		ldr	r3, [r3]
+ 139              		.loc 1 18 29
+ 140 0048 591E     		subs	r1, r3, #1
+ 141 004a 1E48     		ldr	r0, .L9
+ 142 004c 7A68     		ldr	r2, [r7, #4]
+ 143 004e 1346     		mov	r3, r2
+ 144 0050 9B00     		lsls	r3, r3, #2
+ 145 0052 1344     		add	r3, r3, r2
+ 146 0054 9B00     		lsls	r3, r3, #2
+ 147 0056 0344     		add	r3, r3, r0
+ 148 0058 0433     		adds	r3, r3, #4
+ 149 005a 1960     		str	r1, [r3]
+ 150 005c 26E0     		b	.L6
+ 151              	.L7:
+  19:./Core/Src/scheduler.c **** 			} else {
+ARM GAS  C:\Users\ULTIMA~1\AppData\Local\Temp\cc9iFp0M.s 			page 4
+
+
+  20:./Core/Src/scheduler.c **** 				SCH_tasks_G[index].RunMe += 1;
+ 152              		.loc 1 20 30
+ 153 005e 1949     		ldr	r1, .L9
+ 154 0060 7A68     		ldr	r2, [r7, #4]
+ 155 0062 1346     		mov	r3, r2
+ 156 0064 9B00     		lsls	r3, r3, #2
+ 157 0066 1344     		add	r3, r3, r2
+ 158 0068 9B00     		lsls	r3, r3, #2
+ 159 006a 0B44     		add	r3, r3, r1
+ 160 006c 0C33     		adds	r3, r3, #12
+ 161 006e 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 162 0070 0133     		adds	r3, r3, #1
+ 163 0072 D8B2     		uxtb	r0, r3
+ 164 0074 1349     		ldr	r1, .L9
+ 165 0076 7A68     		ldr	r2, [r7, #4]
+ 166 0078 1346     		mov	r3, r2
+ 167 007a 9B00     		lsls	r3, r3, #2
+ 168 007c 1344     		add	r3, r3, r2
+ 169 007e 9B00     		lsls	r3, r3, #2
+ 170 0080 0B44     		add	r3, r3, r1
+ 171 0082 0C33     		adds	r3, r3, #12
+ 172 0084 0246     		mov	r2, r0
+ 173 0086 1A70     		strb	r2, [r3]
+  21:./Core/Src/scheduler.c **** 				SCH_tasks_G[index].Delay = SCH_tasks_G[index].Period;
+ 174              		.loc 1 21 50
+ 175 0088 0E49     		ldr	r1, .L9
+ 176 008a 7A68     		ldr	r2, [r7, #4]
+ 177 008c 1346     		mov	r3, r2
+ 178 008e 9B00     		lsls	r3, r3, #2
+ 179 0090 1344     		add	r3, r3, r2
+ 180 0092 9B00     		lsls	r3, r3, #2
+ 181 0094 0B44     		add	r3, r3, r1
+ 182 0096 0833     		adds	r3, r3, #8
+ 183 0098 1968     		ldr	r1, [r3]
+ 184              		.loc 1 21 30
+ 185 009a 0A48     		ldr	r0, .L9
+ 186 009c 7A68     		ldr	r2, [r7, #4]
+ 187 009e 1346     		mov	r3, r2
+ 188 00a0 9B00     		lsls	r3, r3, #2
+ 189 00a2 1344     		add	r3, r3, r2
+ 190 00a4 9B00     		lsls	r3, r3, #2
+ 191 00a6 0344     		add	r3, r3, r0
+ 192 00a8 0433     		adds	r3, r3, #4
+ 193 00aa 1960     		str	r1, [r3]
+ 194              	.L6:
+  15:./Core/Src/scheduler.c **** 		if(SCH_tasks_G[index].pTask){
+ 195              		.loc 1 15 45 discriminator 2
+ 196 00ac 7B68     		ldr	r3, [r7, #4]
+ 197 00ae 0133     		adds	r3, r3, #1
+ 198 00b0 7B60     		str	r3, [r7, #4]
+ 199              	.L5:
+  15:./Core/Src/scheduler.c **** 		if(SCH_tasks_G[index].pTask){
+ 200              		.loc 1 15 2 discriminator 1
+ 201 00b2 7B68     		ldr	r3, [r7, #4]
+ 202 00b4 272B     		cmp	r3, #39
+ 203 00b6 A9D9     		bls	.L8
+  22:./Core/Src/scheduler.c **** 			}
+ARM GAS  C:\Users\ULTIMA~1\AppData\Local\Temp\cc9iFp0M.s 			page 5
+
+
+  23:./Core/Src/scheduler.c **** 		}
+  24:./Core/Src/scheduler.c **** 	}
+  25:./Core/Src/scheduler.c **** }
+ 204              		.loc 1 25 1
+ 205 00b8 00BF     		nop
+ 206 00ba 00BF     		nop
+ 207 00bc 0C37     		adds	r7, r7, #12
+ 208              		.cfi_def_cfa_offset 4
+ 209 00be BD46     		mov	sp, r7
+ 210              		.cfi_def_cfa_register 13
+ 211              		@ sp needed
+ 212 00c0 80BC     		pop	{r7}
+ 213              		.cfi_restore 7
+ 214              		.cfi_def_cfa_offset 0
+ 215 00c2 7047     		bx	lr
+ 216              	.L10:
+ 217              		.align	2
+ 218              	.L9:
+ 219 00c4 00000000 		.word	SCH_tasks_G
+ 220              		.cfi_endproc
+ 221              	.LFE69:
+ 223              		.section	.text.SCH_Add_Task,"ax",%progbits
+ 224              		.align	1
+ 225              		.global	SCH_Add_Task
+ 226              		.syntax unified
+ 227              		.thumb
+ 228              		.thumb_func
+ 230              	SCH_Add_Task:
+ 231              	.LFB70:
+  26:./Core/Src/scheduler.c **** 
+  27:./Core/Src/scheduler.c **** uint32_t SCH_Add_Task(void(*pFunc)(), uint32_t delay, uint32_t period){
+ 232              		.loc 1 27 71
+ 233              		.cfi_startproc
+ 234              		@ args = 0, pretend = 0, frame = 24
+ 235              		@ frame_needed = 1, uses_anonymous_args = 0
+ 236              		@ link register save eliminated.
+ 237 0000 80B4     		push	{r7}
+ 238              		.cfi_def_cfa_offset 4
+ 239              		.cfi_offset 7, -4
+ 240 0002 87B0     		sub	sp, sp, #28
+ 241              		.cfi_def_cfa_offset 32
+ 242 0004 00AF     		add	r7, sp, #0
+ 243              		.cfi_def_cfa_register 7
+ 244 0006 F860     		str	r0, [r7, #12]
+ 245 0008 B960     		str	r1, [r7, #8]
+ 246 000a 7A60     		str	r2, [r7, #4]
+  28:./Core/Src/scheduler.c **** 	uint32_t index = 0;
+ 247              		.loc 1 28 11
+ 248 000c 0023     		movs	r3, #0
+ 249 000e 7B61     		str	r3, [r7, #20]
+  29:./Core/Src/scheduler.c **** 	while(SCH_tasks_G[index].pTask != 0 && index < SCH_MAX_TASKS) index++;
+ 250              		.loc 1 29 7
+ 251 0010 02E0     		b	.L12
+ 252              	.L14:
+ 253              		.loc 1 29 69 discriminator 3
+ 254 0012 7B69     		ldr	r3, [r7, #20]
+ 255 0014 0133     		adds	r3, r3, #1
+ARM GAS  C:\Users\ULTIMA~1\AppData\Local\Temp\cc9iFp0M.s 			page 6
+
+
+ 256 0016 7B61     		str	r3, [r7, #20]
+ 257              	.L12:
+ 258              		.loc 1 29 26 discriminator 1
+ 259 0018 2649     		ldr	r1, .L17
+ 260 001a 7A69     		ldr	r2, [r7, #20]
+ 261 001c 1346     		mov	r3, r2
+ 262 001e 9B00     		lsls	r3, r3, #2
+ 263 0020 1344     		add	r3, r3, r2
+ 264 0022 9B00     		lsls	r3, r3, #2
+ 265 0024 0B44     		add	r3, r3, r1
+ 266 0026 1B68     		ldr	r3, [r3]
+ 267              		.loc 1 29 7 discriminator 1
+ 268 0028 002B     		cmp	r3, #0
+ 269 002a 02D0     		beq	.L13
+ 270              		.loc 1 29 38 discriminator 2
+ 271 002c 7B69     		ldr	r3, [r7, #20]
+ 272 002e 272B     		cmp	r3, #39
+ 273 0030 EFD9     		bls	.L14
+ 274              	.L13:
+  30:./Core/Src/scheduler.c **** 	if(index == SCH_MAX_TASKS){
+ 275              		.loc 1 30 4
+ 276 0032 7B69     		ldr	r3, [r7, #20]
+ 277 0034 282B     		cmp	r3, #40
+ 278 0036 01D1     		bne	.L15
+  31:./Core/Src/scheduler.c **** 		return SCH_MAX_TASKS;
+ 279              		.loc 1 31 10
+ 280 0038 2823     		movs	r3, #40
+ 281 003a 35E0     		b	.L16
+ 282              	.L15:
+  32:./Core/Src/scheduler.c **** 	}
+  33:./Core/Src/scheduler.c **** 	SCH_tasks_G[index].pTask = pFunc;
+ 283              		.loc 1 33 27
+ 284 003c 1D49     		ldr	r1, .L17
+ 285 003e 7A69     		ldr	r2, [r7, #20]
+ 286 0040 1346     		mov	r3, r2
+ 287 0042 9B00     		lsls	r3, r3, #2
+ 288 0044 1344     		add	r3, r3, r2
+ 289 0046 9B00     		lsls	r3, r3, #2
+ 290 0048 0B44     		add	r3, r3, r1
+ 291 004a FA68     		ldr	r2, [r7, #12]
+ 292 004c 1A60     		str	r2, [r3]
+  34:./Core/Src/scheduler.c **** 	SCH_tasks_G[index].Period = period/TIMER_CYCLE;
+ 293              		.loc 1 34 36
+ 294 004e 7B68     		ldr	r3, [r7, #4]
+ 295 0050 194A     		ldr	r2, .L17+4
+ 296 0052 A2FB0323 		umull	r2, r3, r2, r3
+ 297 0056 D908     		lsrs	r1, r3, #3
+ 298              		.loc 1 34 28
+ 299 0058 1648     		ldr	r0, .L17
+ 300 005a 7A69     		ldr	r2, [r7, #20]
+ 301 005c 1346     		mov	r3, r2
+ 302 005e 9B00     		lsls	r3, r3, #2
+ 303 0060 1344     		add	r3, r3, r2
+ 304 0062 9B00     		lsls	r3, r3, #2
+ 305 0064 0344     		add	r3, r3, r0
+ 306 0066 0833     		adds	r3, r3, #8
+ 307 0068 1960     		str	r1, [r3]
+ARM GAS  C:\Users\ULTIMA~1\AppData\Local\Temp\cc9iFp0M.s 			page 7
+
+
+  35:./Core/Src/scheduler.c **** 	SCH_tasks_G[index].Delay = delay;
+ 308              		.loc 1 35 27
+ 309 006a 1249     		ldr	r1, .L17
+ 310 006c 7A69     		ldr	r2, [r7, #20]
+ 311 006e 1346     		mov	r3, r2
+ 312 0070 9B00     		lsls	r3, r3, #2
+ 313 0072 1344     		add	r3, r3, r2
+ 314 0074 9B00     		lsls	r3, r3, #2
+ 315 0076 0B44     		add	r3, r3, r1
+ 316 0078 0433     		adds	r3, r3, #4
+ 317 007a BA68     		ldr	r2, [r7, #8]
+ 318 007c 1A60     		str	r2, [r3]
+  36:./Core/Src/scheduler.c **** 	SCH_tasks_G[index].RunMe = 0;
+ 319              		.loc 1 36 27
+ 320 007e 0D49     		ldr	r1, .L17
+ 321 0080 7A69     		ldr	r2, [r7, #20]
+ 322 0082 1346     		mov	r3, r2
+ 323 0084 9B00     		lsls	r3, r3, #2
+ 324 0086 1344     		add	r3, r3, r2
+ 325 0088 9B00     		lsls	r3, r3, #2
+ 326 008a 0B44     		add	r3, r3, r1
+ 327 008c 0C33     		adds	r3, r3, #12
+ 328 008e 0022     		movs	r2, #0
+ 329 0090 1A70     		strb	r2, [r3]
+  37:./Core/Src/scheduler.c **** 	SCH_tasks_G[index].TaskID = index;
+ 330              		.loc 1 37 28
+ 331 0092 0849     		ldr	r1, .L17
+ 332 0094 7A69     		ldr	r2, [r7, #20]
+ 333 0096 1346     		mov	r3, r2
+ 334 0098 9B00     		lsls	r3, r3, #2
+ 335 009a 1344     		add	r3, r3, r2
+ 336 009c 9B00     		lsls	r3, r3, #2
+ 337 009e 0B44     		add	r3, r3, r1
+ 338 00a0 1033     		adds	r3, r3, #16
+ 339 00a2 7A69     		ldr	r2, [r7, #20]
+ 340 00a4 1A60     		str	r2, [r3]
+  38:./Core/Src/scheduler.c **** 	return index;
+ 341              		.loc 1 38 9
+ 342 00a6 7B69     		ldr	r3, [r7, #20]
+ 343              	.L16:
+  39:./Core/Src/scheduler.c **** }
+ 344              		.loc 1 39 1
+ 345 00a8 1846     		mov	r0, r3
+ 346 00aa 1C37     		adds	r7, r7, #28
+ 347              		.cfi_def_cfa_offset 4
+ 348 00ac BD46     		mov	sp, r7
+ 349              		.cfi_def_cfa_register 13
+ 350              		@ sp needed
+ 351 00ae 80BC     		pop	{r7}
+ 352              		.cfi_restore 7
+ 353              		.cfi_def_cfa_offset 0
+ 354 00b0 7047     		bx	lr
+ 355              	.L18:
+ 356 00b2 00BF     		.align	2
+ 357              	.L17:
+ 358 00b4 00000000 		.word	SCH_tasks_G
+ 359 00b8 CDCCCCCC 		.word	-858993459
+ARM GAS  C:\Users\ULTIMA~1\AppData\Local\Temp\cc9iFp0M.s 			page 8
+
+
+ 360              		.cfi_endproc
+ 361              	.LFE70:
+ 363              		.section	.text.SCH_Dispatch_Tasks,"ax",%progbits
+ 364              		.align	1
+ 365              		.global	SCH_Dispatch_Tasks
+ 366              		.syntax unified
+ 367              		.thumb
+ 368              		.thumb_func
+ 370              	SCH_Dispatch_Tasks:
+ 371              	.LFB71:
+  40:./Core/Src/scheduler.c **** 
+  41:./Core/Src/scheduler.c **** void SCH_Dispatch_Tasks(void){
+ 372              		.loc 1 41 30
+ 373              		.cfi_startproc
+ 374              		@ args = 0, pretend = 0, frame = 8
+ 375              		@ frame_needed = 1, uses_anonymous_args = 0
+ 376 0000 80B5     		push	{r7, lr}
+ 377              		.cfi_def_cfa_offset 8
+ 378              		.cfi_offset 7, -8
+ 379              		.cfi_offset 14, -4
+ 380 0002 82B0     		sub	sp, sp, #8
+ 381              		.cfi_def_cfa_offset 16
+ 382 0004 00AF     		add	r7, sp, #0
+ 383              		.cfi_def_cfa_register 7
+ 384              	.LBB2:
+  42:./Core/Src/scheduler.c **** 	for(int index = 0; index < SCH_MAX_TASKS; index++){
+ 385              		.loc 1 42 10
+ 386 0006 0023     		movs	r3, #0
+ 387 0008 7B60     		str	r3, [r7, #4]
+ 388              		.loc 1 42 2
+ 389 000a 3AE0     		b	.L20
+ 390              	.L22:
+  43:./Core/Src/scheduler.c **** 		if(SCH_tasks_G[index].RunMe > 0){
+ 391              		.loc 1 43 24
+ 392 000c 2149     		ldr	r1, .L23
+ 393 000e 7A68     		ldr	r2, [r7, #4]
+ 394 0010 1346     		mov	r3, r2
+ 395 0012 9B00     		lsls	r3, r3, #2
+ 396 0014 1344     		add	r3, r3, r2
+ 397 0016 9B00     		lsls	r3, r3, #2
+ 398 0018 0B44     		add	r3, r3, r1
+ 399 001a 0C33     		adds	r3, r3, #12
+ 400 001c 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 401              		.loc 1 43 5
+ 402 001e 002B     		cmp	r3, #0
+ 403 0020 2CD0     		beq	.L21
+  44:./Core/Src/scheduler.c **** 			SCH_tasks_G[index].RunMe--;
+ 404              		.loc 1 44 22
+ 405 0022 1C49     		ldr	r1, .L23
+ 406 0024 7A68     		ldr	r2, [r7, #4]
+ 407 0026 1346     		mov	r3, r2
+ 408 0028 9B00     		lsls	r3, r3, #2
+ 409 002a 1344     		add	r3, r3, r2
+ 410 002c 9B00     		lsls	r3, r3, #2
+ 411 002e 0B44     		add	r3, r3, r1
+ 412 0030 0C33     		adds	r3, r3, #12
+ 413 0032 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ARM GAS  C:\Users\ULTIMA~1\AppData\Local\Temp\cc9iFp0M.s 			page 9
+
+
+ 414              		.loc 1 44 28
+ 415 0034 013B     		subs	r3, r3, #1
+ 416 0036 D8B2     		uxtb	r0, r3
+ 417 0038 1649     		ldr	r1, .L23
+ 418 003a 7A68     		ldr	r2, [r7, #4]
+ 419 003c 1346     		mov	r3, r2
+ 420 003e 9B00     		lsls	r3, r3, #2
+ 421 0040 1344     		add	r3, r3, r2
+ 422 0042 9B00     		lsls	r3, r3, #2
+ 423 0044 0B44     		add	r3, r3, r1
+ 424 0046 0C33     		adds	r3, r3, #12
+ 425 0048 0246     		mov	r2, r0
+ 426 004a 1A70     		strb	r2, [r3]
+  45:./Core/Src/scheduler.c **** 			(*SCH_tasks_G[index].pTask)();
+ 427              		.loc 1 45 5
+ 428 004c 1149     		ldr	r1, .L23
+ 429 004e 7A68     		ldr	r2, [r7, #4]
+ 430 0050 1346     		mov	r3, r2
+ 431 0052 9B00     		lsls	r3, r3, #2
+ 432 0054 1344     		add	r3, r3, r2
+ 433 0056 9B00     		lsls	r3, r3, #2
+ 434 0058 0B44     		add	r3, r3, r1
+ 435 005a 1B68     		ldr	r3, [r3]
+ 436 005c 9847     		blx	r3
+ 437              	.LVL0:
+  46:./Core/Src/scheduler.c **** 			if(SCH_tasks_G[index].Period == 0) SCH_Delete_Task(index);
+ 438              		.loc 1 46 25
+ 439 005e 0D49     		ldr	r1, .L23
+ 440 0060 7A68     		ldr	r2, [r7, #4]
+ 441 0062 1346     		mov	r3, r2
+ 442 0064 9B00     		lsls	r3, r3, #2
+ 443 0066 1344     		add	r3, r3, r2
+ 444 0068 9B00     		lsls	r3, r3, #2
+ 445 006a 0B44     		add	r3, r3, r1
+ 446 006c 0833     		adds	r3, r3, #8
+ 447 006e 1B68     		ldr	r3, [r3]
+ 448              		.loc 1 46 6
+ 449 0070 002B     		cmp	r3, #0
+ 450 0072 03D1     		bne	.L21
+ 451              		.loc 1 46 39 discriminator 1
+ 452 0074 7B68     		ldr	r3, [r7, #4]
+ 453 0076 1846     		mov	r0, r3
+ 454 0078 FFF7FEFF 		bl	SCH_Delete_Task
+ 455              	.L21:
+  42:./Core/Src/scheduler.c **** 		if(SCH_tasks_G[index].RunMe > 0){
+ 456              		.loc 1 42 49 discriminator 2
+ 457 007c 7B68     		ldr	r3, [r7, #4]
+ 458 007e 0133     		adds	r3, r3, #1
+ 459 0080 7B60     		str	r3, [r7, #4]
+ 460              	.L20:
+  42:./Core/Src/scheduler.c **** 		if(SCH_tasks_G[index].RunMe > 0){
+ 461              		.loc 1 42 2 discriminator 1
+ 462 0082 7B68     		ldr	r3, [r7, #4]
+ 463 0084 272B     		cmp	r3, #39
+ 464 0086 C1DD     		ble	.L22
+ 465              	.LBE2:
+  47:./Core/Src/scheduler.c **** 		}
+ARM GAS  C:\Users\ULTIMA~1\AppData\Local\Temp\cc9iFp0M.s 			page 10
+
+
+  48:./Core/Src/scheduler.c **** 	}
+  49:./Core/Src/scheduler.c **** 	SCH_Go_To_Sleep();
+ 466              		.loc 1 49 2
+ 467 0088 FFF7FEFF 		bl	SCH_Go_To_Sleep
+  50:./Core/Src/scheduler.c **** }
+ 468              		.loc 1 50 1
+ 469 008c 00BF     		nop
+ 470 008e 0837     		adds	r7, r7, #8
+ 471              		.cfi_def_cfa_offset 8
+ 472 0090 BD46     		mov	sp, r7
+ 473              		.cfi_def_cfa_register 13
+ 474              		@ sp needed
+ 475 0092 80BD     		pop	{r7, pc}
+ 476              	.L24:
+ 477              		.align	2
+ 478              	.L23:
+ 479 0094 00000000 		.word	SCH_tasks_G
+ 480              		.cfi_endproc
+ 481              	.LFE71:
+ 483              		.section	.text.SCH_Delete_Task,"ax",%progbits
+ 484              		.align	1
+ 485              		.global	SCH_Delete_Task
+ 486              		.syntax unified
+ 487              		.thumb
+ 488              		.thumb_func
+ 490              	SCH_Delete_Task:
+ 491              	.LFB72:
+  51:./Core/Src/scheduler.c **** 
+  52:./Core/Src/scheduler.c **** uint8_t SCH_Delete_Task(uint32_t index){
+ 492              		.loc 1 52 40
+ 493              		.cfi_startproc
+ 494              		@ args = 0, pretend = 0, frame = 8
+ 495              		@ frame_needed = 1, uses_anonymous_args = 0
+ 496              		@ link register save eliminated.
+ 497 0000 80B4     		push	{r7}
+ 498              		.cfi_def_cfa_offset 4
+ 499              		.cfi_offset 7, -4
+ 500 0002 83B0     		sub	sp, sp, #12
+ 501              		.cfi_def_cfa_offset 16
+ 502 0004 00AF     		add	r7, sp, #0
+ 503              		.cfi_def_cfa_register 7
+ 504 0006 7860     		str	r0, [r7, #4]
+  53:./Core/Src/scheduler.c **** 	if(SCH_tasks_G[index].pTask == 0){
+ 505              		.loc 1 53 23
+ 506 0008 1C49     		ldr	r1, .L28
+ 507 000a 7A68     		ldr	r2, [r7, #4]
+ 508 000c 1346     		mov	r3, r2
+ 509 000e 9B00     		lsls	r3, r3, #2
+ 510 0010 1344     		add	r3, r3, r2
+ 511 0012 9B00     		lsls	r3, r3, #2
+ 512 0014 0B44     		add	r3, r3, r1
+ 513 0016 1B68     		ldr	r3, [r3]
+ 514              		.loc 1 53 4
+ 515 0018 002B     		cmp	r3, #0
+ 516 001a 01D1     		bne	.L26
+  54:./Core/Src/scheduler.c **** 		return 0;
+ 517              		.loc 1 54 10
+ARM GAS  C:\Users\ULTIMA~1\AppData\Local\Temp\cc9iFp0M.s 			page 11
+
+
+ 518 001c 0023     		movs	r3, #0
+ 519 001e 27E0     		b	.L27
+ 520              	.L26:
+  55:./Core/Src/scheduler.c **** 	} else {
+  56:./Core/Src/scheduler.c **** 		SCH_tasks_G[index].pTask = 0;
+ 521              		.loc 1 56 28
+ 522 0020 1649     		ldr	r1, .L28
+ 523 0022 7A68     		ldr	r2, [r7, #4]
+ 524 0024 1346     		mov	r3, r2
+ 525 0026 9B00     		lsls	r3, r3, #2
+ 526 0028 1344     		add	r3, r3, r2
+ 527 002a 9B00     		lsls	r3, r3, #2
+ 528 002c 0B44     		add	r3, r3, r1
+ 529 002e 0022     		movs	r2, #0
+ 530 0030 1A60     		str	r2, [r3]
+  57:./Core/Src/scheduler.c **** 		SCH_tasks_G[index].Delay = 0;
+ 531              		.loc 1 57 28
+ 532 0032 1249     		ldr	r1, .L28
+ 533 0034 7A68     		ldr	r2, [r7, #4]
+ 534 0036 1346     		mov	r3, r2
+ 535 0038 9B00     		lsls	r3, r3, #2
+ 536 003a 1344     		add	r3, r3, r2
+ 537 003c 9B00     		lsls	r3, r3, #2
+ 538 003e 0B44     		add	r3, r3, r1
+ 539 0040 0433     		adds	r3, r3, #4
+ 540 0042 0022     		movs	r2, #0
+ 541 0044 1A60     		str	r2, [r3]
+  58:./Core/Src/scheduler.c **** 		SCH_tasks_G[index].Period = 0;
+ 542              		.loc 1 58 29
+ 543 0046 0D49     		ldr	r1, .L28
+ 544 0048 7A68     		ldr	r2, [r7, #4]
+ 545 004a 1346     		mov	r3, r2
+ 546 004c 9B00     		lsls	r3, r3, #2
+ 547 004e 1344     		add	r3, r3, r2
+ 548 0050 9B00     		lsls	r3, r3, #2
+ 549 0052 0B44     		add	r3, r3, r1
+ 550 0054 0833     		adds	r3, r3, #8
+ 551 0056 0022     		movs	r2, #0
+ 552 0058 1A60     		str	r2, [r3]
+  59:./Core/Src/scheduler.c **** 		SCH_tasks_G[index].RunMe = 0;
+ 553              		.loc 1 59 28
+ 554 005a 0849     		ldr	r1, .L28
+ 555 005c 7A68     		ldr	r2, [r7, #4]
+ 556 005e 1346     		mov	r3, r2
+ 557 0060 9B00     		lsls	r3, r3, #2
+ 558 0062 1344     		add	r3, r3, r2
+ 559 0064 9B00     		lsls	r3, r3, #2
+ 560 0066 0B44     		add	r3, r3, r1
+ 561 0068 0C33     		adds	r3, r3, #12
+ 562 006a 0022     		movs	r2, #0
+ 563 006c 1A70     		strb	r2, [r3]
+  60:./Core/Src/scheduler.c **** 		return 1;
+ 564              		.loc 1 60 10
+ 565 006e 0123     		movs	r3, #1
+ 566              	.L27:
+  61:./Core/Src/scheduler.c **** 	}
+  62:./Core/Src/scheduler.c **** }
+ARM GAS  C:\Users\ULTIMA~1\AppData\Local\Temp\cc9iFp0M.s 			page 12
+
+
+ 567              		.loc 1 62 1
+ 568 0070 1846     		mov	r0, r3
+ 569 0072 0C37     		adds	r7, r7, #12
+ 570              		.cfi_def_cfa_offset 4
+ 571 0074 BD46     		mov	sp, r7
+ 572              		.cfi_def_cfa_register 13
+ 573              		@ sp needed
+ 574 0076 80BC     		pop	{r7}
+ 575              		.cfi_restore 7
+ 576              		.cfi_def_cfa_offset 0
+ 577 0078 7047     		bx	lr
+ 578              	.L29:
+ 579 007a 00BF     		.align	2
+ 580              	.L28:
+ 581 007c 00000000 		.word	SCH_tasks_G
+ 582              		.cfi_endproc
+ 583              	.LFE72:
+ 585              		.section	.text.SCH_Go_To_Sleep,"ax",%progbits
+ 586              		.align	1
+ 587              		.global	SCH_Go_To_Sleep
+ 588              		.syntax unified
+ 589              		.thumb
+ 590              		.thumb_func
+ 592              	SCH_Go_To_Sleep:
+ 593              	.LFB73:
+  63:./Core/Src/scheduler.c **** 
+  64:./Core/Src/scheduler.c **** void SCH_Go_To_Sleep(void){
+ 594              		.loc 1 64 27
+ 595              		.cfi_startproc
+ 596              		@ args = 0, pretend = 0, frame = 0
+ 597              		@ frame_needed = 1, uses_anonymous_args = 0
+ 598 0000 80B5     		push	{r7, lr}
+ 599              		.cfi_def_cfa_offset 8
+ 600              		.cfi_offset 7, -8
+ 601              		.cfi_offset 14, -4
+ 602 0002 00AF     		add	r7, sp, #0
+ 603              		.cfi_def_cfa_register 7
+  65:./Core/Src/scheduler.c **** 	HAL_SuspendTick();
+ 604              		.loc 1 65 2
+ 605 0004 FFF7FEFF 		bl	HAL_SuspendTick
+  66:./Core/Src/scheduler.c **** 	HAL_PWR_EnterSLEEPMode(PWR_MAINREGULATOR_ON, PWR_SLEEPENTRY_WFI);
+ 606              		.loc 1 66 2
+ 607 0008 0121     		movs	r1, #1
+ 608 000a 0020     		movs	r0, #0
+ 609 000c FFF7FEFF 		bl	HAL_PWR_EnterSLEEPMode
+  67:./Core/Src/scheduler.c **** //	HAL_ResumeTick();
+  68:./Core/Src/scheduler.c **** }
+ 610              		.loc 1 68 1
+ 611 0010 00BF     		nop
+ 612 0012 80BD     		pop	{r7, pc}
+ 613              		.cfi_endproc
+ 614              	.LFE73:
+ 616              		.text
+ 617              	.Letext0:
+ 618              		.file 2 "c:\\st\\stm32cubeide_1.10.1\\stm32cubeide\\plugins\\com.st.stm32cube.ide.mcu.externaltool
+ 619              		.file 3 "c:\\st\\stm32cubeide_1.10.1\\stm32cubeide\\plugins\\com.st.stm32cube.ide.mcu.externaltool
+ 620              		.file 4 "Core/Inc/scheduler.h"
+ARM GAS  C:\Users\ULTIMA~1\AppData\Local\Temp\cc9iFp0M.s 			page 13
+
+
+ 621              		.file 5 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h"
+ 622              		.file 6 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h"
+ARM GAS  C:\Users\ULTIMA~1\AppData\Local\Temp\cc9iFp0M.s 			page 14
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 scheduler.c
+C:\Users\ULTIMA~1\AppData\Local\Temp\cc9iFp0M.s:22     .bss.SCH_tasks_G:0000000000000000 SCH_tasks_G
+C:\Users\ULTIMA~1\AppData\Local\Temp\cc9iFp0M.s:19     .bss.SCH_tasks_G:0000000000000000 $d
+C:\Users\ULTIMA~1\AppData\Local\Temp\cc9iFp0M.s:25     .text.SCH_Init:0000000000000000 $t
+C:\Users\ULTIMA~1\AppData\Local\Temp\cc9iFp0M.s:31     .text.SCH_Init:0000000000000000 SCH_Init
+C:\Users\ULTIMA~1\AppData\Local\Temp\cc9iFp0M.s:490    .text.SCH_Delete_Task:0000000000000000 SCH_Delete_Task
+C:\Users\ULTIMA~1\AppData\Local\Temp\cc9iFp0M.s:78     .text.SCH_Update:0000000000000000 $t
+C:\Users\ULTIMA~1\AppData\Local\Temp\cc9iFp0M.s:84     .text.SCH_Update:0000000000000000 SCH_Update
+C:\Users\ULTIMA~1\AppData\Local\Temp\cc9iFp0M.s:219    .text.SCH_Update:00000000000000c4 $d
+C:\Users\ULTIMA~1\AppData\Local\Temp\cc9iFp0M.s:224    .text.SCH_Add_Task:0000000000000000 $t
+C:\Users\ULTIMA~1\AppData\Local\Temp\cc9iFp0M.s:230    .text.SCH_Add_Task:0000000000000000 SCH_Add_Task
+C:\Users\ULTIMA~1\AppData\Local\Temp\cc9iFp0M.s:358    .text.SCH_Add_Task:00000000000000b4 $d
+C:\Users\ULTIMA~1\AppData\Local\Temp\cc9iFp0M.s:364    .text.SCH_Dispatch_Tasks:0000000000000000 $t
+C:\Users\ULTIMA~1\AppData\Local\Temp\cc9iFp0M.s:370    .text.SCH_Dispatch_Tasks:0000000000000000 SCH_Dispatch_Tasks
+C:\Users\ULTIMA~1\AppData\Local\Temp\cc9iFp0M.s:592    .text.SCH_Go_To_Sleep:0000000000000000 SCH_Go_To_Sleep
+C:\Users\ULTIMA~1\AppData\Local\Temp\cc9iFp0M.s:479    .text.SCH_Dispatch_Tasks:0000000000000094 $d
+C:\Users\ULTIMA~1\AppData\Local\Temp\cc9iFp0M.s:484    .text.SCH_Delete_Task:0000000000000000 $t
+C:\Users\ULTIMA~1\AppData\Local\Temp\cc9iFp0M.s:581    .text.SCH_Delete_Task:000000000000007c $d
+C:\Users\ULTIMA~1\AppData\Local\Temp\cc9iFp0M.s:586    .text.SCH_Go_To_Sleep:0000000000000000 $t
+                           .group:0000000000000000 wm4.0.cb5f01749778df26340c4505df3d34d0
+                           .group:0000000000000000 wm4.stm32f1xx_hal_conf.h.21.98635006afa9a018cfa5e0632ed4968b
+                           .group:0000000000000000 wm4.stm32f1xx.h.39.208bb8a61c892b7c37d899c49a031330
+                           .group:0000000000000000 wm4.stm32f103xb.h.38.ec967d5ad9d3269cb0788eebda048e38
+                           .group:0000000000000000 wm4._newlib_version.h.4.bfdf54b0af045d4a71376ae00f63a22c
+                           .group:0000000000000000 wm4.features.h.33.318b64d71e0957639cfb30f1db1f7ec8
+                           .group:0000000000000000 wm4._default_types.h.15.247e5cd201eca3442cbf5404108c4935
+                           .group:0000000000000000 wm4._intsup.h.10.48bafbb683905c4daa4565a85aeeb264
+                           .group:0000000000000000 wm4._stdint.h.10.c24fa3af3bc1706662bb5593a907e841
+                           .group:0000000000000000 wm4.stdint.h.23.d53047a68f4a85177f80b422d52785ed
+                           .group:0000000000000000 wm4.cmsis_version.h.32.4d5822004c01a829a975260e854b5f8e
+                           .group:0000000000000000 wm4.core_cm3.h.66.fc46cac19810db8f98d67da7ef88f42c
+                           .group:0000000000000000 wm4.cmsis_gcc.h.26.4f5798e999d5690b80e6ded3ecc94b37
+                           .group:0000000000000000 wm4.core_cm3.h.127.f4474120f1a7524deb56f9d74ff175da
+                           .group:0000000000000000 wm4.stm32f103xb.h.573.10249aa7473ca93be896fed94046a725
+                           .group:0000000000000000 wm4.stm32f1xx.h.162.96b09079a093c34dbd7f0b85cbd0ddee
+                           .group:0000000000000000 wm4.stm32_hal_legacy.h.23.91ba5b544a4c2be2620a1e7ff0049e10
+                           .group:0000000000000000 wm4.stddef.h.39.144cf5ddcd53cbfdac30259dc1a6c87f
+                           .group:0000000000000000 wm4.stm32f1xx_hal_def.h.57.18d01ce1aa74e9fb44dbf16f821a574a
+                           .group:0000000000000000 wm4.stm32f1xx_hal_rcc.h.95.21591bbc513aaa813c0b8640c3b32517
+                           .group:0000000000000000 wm4.stm32f1xx_hal_rcc_ex.h.22.8763f99bc1e3e2dcf0febe9161d81b37
+                           .group:0000000000000000 wm4.stm32f1xx_hal_rcc.h.1202.f8e5f9e0cf4eef7840facf5396029056
+                           .group:0000000000000000 wm4.stm32f1xx_hal_gpio.h.22.fa638d688dcc57ca806fe6a7831b0d04
+                           .group:0000000000000000 wm4.stm32f1xx_hal_gpio_ex.h.22.51a50ef3512cd78017ce666a32d364bf
+                           .group:0000000000000000 wm4.stm32f1xx_hal_gpio.h.263.f5ebf2f545ade59412ab9261c8e35dc4
+                           .group:0000000000000000 wm4.stm32f1xx_hal_exti.h.22.e26491d042c8079c3ca67eca341af862
+                           .group:0000000000000000 wm4.stm32f1xx_hal_dma.h.22.3c14338534886827bf3aeaa2a7f412a1
+                           .group:0000000000000000 wm4.stm32f1xx_hal_dma_ex.h.22.001ac4d7f81ccbdcae49bd65c13858c8
+                           .group:0000000000000000 wm4.stm32f1xx_hal_dma.h.409.cafcd2cfe701091535636be537c18293
+                           .group:0000000000000000 wm4.stm32f1xx_hal_cortex.h.22.b5f4174bb6a50d95405567b8f50e0900
+                           .group:0000000000000000 wm4.stm32f1xx_hal_flash.h.22.5cea9a7210e6315b41724b47b5fdf203
+                           .group:0000000000000000 wm4.stm32f1xx_hal_flash_ex.h.22.d4e19c21f2a86fa2f8ec2c2d5f1ab2af
+                           .group:0000000000000000 wm4.stm32f1xx_hal_pwr.h.22.3438c476faafc3240bf146f143df3fcd
+                           .group:0000000000000000 wm4.stm32f1xx_hal_tim.h.22.a16e206564e97dbace9faae59a0d6008
+                           .group:0000000000000000 wm4.stm32f1xx_hal_uart.h.22.5f7992e497faa36aa98f09f7214f4dbb
+                           .group:0000000000000000 wm4.stm32f1xx_hal.h.88.91065c0692bed6019c34f1e9c00589fd
+                           .group:0000000000000000 wm4.newlib.h.8.7cb3972cd43265932d4782d5eb589854
+ARM GAS  C:\Users\ULTIMA~1\AppData\Local\Temp\cc9iFp0M.s 			page 15
+
+
+                           .group:0000000000000000 wm4.ieeefp.h.77.25247dc27dbe3b23bfe98c2dc18f6ac5
+                           .group:0000000000000000 wm4.config.h.224.c701144a7b0518c6ee9b9b5465b79f81
+                           .group:0000000000000000 wm4._ansi.h.31.de524f58584151836e90d8620a16f8e8
+                           .group:0000000000000000 wm4.stdio.h.31.7c0e28c411445f3f9c5b11accf882760
+                           .group:0000000000000000 wm4.stddef.h.155.ba788add86a0e365f264484f110c3c29
+                           .group:0000000000000000 wm4.cdefs.h.49.39045112216f6a021dbdffe3bf5accce
+                           .group:0000000000000000 wm4.stdarg.h.34.3a23a216c0c293b3d2ea2e89281481e6
+                           .group:0000000000000000 wm4._types.h.20.dd0d04dca3800a0d2a6129b87f3adbb2
+                           .group:0000000000000000 wm4.stddef.h.155.3588ebfdd1e8c7ede80509bb9c3b8009
+                           .group:0000000000000000 wm4._types.h.127.34941de1b2539d59d5cac00e0dd27a45
+                           .group:0000000000000000 wm4.reent.h.17.e292bf8b0bec6c96e131a54347145a30
+                           .group:0000000000000000 wm4.lock.h.2.1461d1fff82dffe8bfddc23307f6484f
+                           .group:0000000000000000 wm4.reent.h.77.dcd6129ff07fe81bd5636db29abe53b2
+                           .group:0000000000000000 wm4.types.h.40.8b6acba56cefbb11746718204edc8f5e
+                           .group:0000000000000000 wm4._endian.h.31.65a10590763c3dde1ac4a7f66d7d4891
+                           .group:0000000000000000 wm4.endian.h.9.49f3a4695c1b61e8a0808de3c4a106cb
+                           .group:0000000000000000 wm4._timeval.h.32.bec3221fa7a9bb0bdde696c9c57e47d2
+                           .group:0000000000000000 wm4.timespec.h.41.d855182eb0e690443ab8651bcedca6e1
+                           .group:0000000000000000 wm4.select.h.19.40cd3f2bfc456b193b790c2754690ebf
+                           .group:0000000000000000 wm4.types.h.51.5571ec98f267d17d3c670b7a3ba33afa
+                           .group:0000000000000000 wm4.sched.h.22.c60982713a5c428609783c78f9c78d95
+                           .group:0000000000000000 wm4._pthreadtypes.h.36.fcee9961c35163dde6267ef772ad1972
+                           .group:0000000000000000 wm4.stdio.h.2.4aa87247282eca6c8f36f9de33d8df1a
+                           .group:0000000000000000 wm4.stdio.h.81.932d0c162786b883f622b8d05c120c78
+                           .group:0000000000000000 wm4.main.h.66.f6c32797044e6683294f2b743aea3471
+                           .group:0000000000000000 wm4.button.h.9.c6366124cd589a43ad584300c9157129
+                           .group:0000000000000000 wm4.scheduler.h.17.9de8b8408e3a8bbfc25fc0bf13812eea
+
+UNDEFINED SYMBOLS
+HAL_SuspendTick
+HAL_PWR_EnterSLEEPMode

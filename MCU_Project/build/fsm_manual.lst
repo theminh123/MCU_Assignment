@@ -1,0 +1,679 @@
+ARM GAS  C:\Users\ULTIMA~1\AppData\Local\Temp\cctSWvCQ.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"fsm_manual.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.fsm_manual_run,"ax",%progbits
+  18              		.align	1
+  19              		.global	fsm_manual_run
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  24              	fsm_manual_run:
+  25              	.LFB68:
+  26              		.file 1 "./Core/Src/fsm_manual.c"
+   1:./Core/Src/fsm_manual.c **** 
+   2:./Core/Src/fsm_manual.c **** #include "fsm_manual.h"
+   3:./Core/Src/fsm_manual.c **** 
+   4:./Core/Src/fsm_manual.c **** void fsm_manual_run(){
+  27              		.loc 1 4 22
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 1, uses_anonymous_args = 0
+  31 0000 80B5     		push	{r7, lr}
+  32              		.cfi_def_cfa_offset 8
+  33              		.cfi_offset 7, -8
+  34              		.cfi_offset 14, -4
+  35 0002 00AF     		add	r7, sp, #0
+  36              		.cfi_def_cfa_register 7
+   5:./Core/Src/fsm_manual.c **** 	switch (status) {
+  37              		.loc 1 5 2
+  38 0004 9B4B     		ldr	r3, .L27
+  39 0006 1B68     		ldr	r3, [r3]
+  40 0008 0B3B     		subs	r3, r3, #11
+  41 000a 032B     		cmp	r3, #3
+  42 000c 00F22681 		bhi	.L21
+  43 0010 01A2     		adr	r2, .L4
+  44 0012 52F823F0 		ldr	pc, [r2, r3, lsl #2]
+  45 0016 00BF     		.p2align 2
+  46              	.L4:
+  47 0018 29000000 		.word	.L7+1
+  48 001c B5000000 		.word	.L6+1
+  49 0020 45010000 		.word	.L5+1
+  50 0024 D3010000 		.word	.L3+1
+  51              		.p2align 1
+  52              	.L7:
+   6:./Core/Src/fsm_manual.c **** 		case MAN_RED_GREEN:
+ARM GAS  C:\Users\ULTIMA~1\AppData\Local\Temp\cctSWvCQ.s 			page 2
+
+
+   7:./Core/Src/fsm_manual.c **** 			isButtonPressed(3);
+  53              		.loc 1 7 4
+  54 0028 0320     		movs	r0, #3
+  55 002a FFF7FEFF 		bl	isButtonPressed
+   8:./Core/Src/fsm_manual.c **** 			if(timer1_flag) {
+  56              		.loc 1 8 7
+  57 002e 924B     		ldr	r3, .L27+4
+  58 0030 1B68     		ldr	r3, [r3]
+  59              		.loc 1 8 6
+  60 0032 002B     		cmp	r3, #0
+  61 0034 10D0     		beq	.L8
+   9:./Core/Src/fsm_manual.c **** 				status = AUTO_RED_YELLOW;
+  62              		.loc 1 9 12
+  63 0036 8F4B     		ldr	r3, .L27
+  64 0038 0322     		movs	r2, #3
+  65 003a 1A60     		str	r2, [r3]
+  10:./Core/Src/fsm_manual.c **** 				setTimer1(1000);
+  66              		.loc 1 10 5
+  67 003c 4FF47A70 		mov	r0, #1000
+  68 0040 FFF7FEFF 		bl	setTimer1
+  11:./Core/Src/fsm_manual.c **** 				counter = max_yellow2;
+  69              		.loc 1 11 13
+  70 0044 8D4B     		ldr	r3, .L27+8
+  71 0046 1B68     		ldr	r3, [r3]
+  72 0048 8D4A     		ldr	r2, .L27+12
+  73 004a 1360     		str	r3, [r2]
+  12:./Core/Src/fsm_manual.c **** 				displayCounter();
+  74              		.loc 1 12 5
+  75 004c FFF7FEFF 		bl	displayCounter
+  13:./Core/Src/fsm_manual.c **** 				setTraffic1Red();
+  76              		.loc 1 13 5
+  77 0050 FFF7FEFF 		bl	setTraffic1Red
+  14:./Core/Src/fsm_manual.c **** 				setTraffic2Yellow();
+  78              		.loc 1 14 5
+  79 0054 FFF7FEFF 		bl	setTraffic2Yellow
+  80              	.L8:
+  15:./Core/Src/fsm_manual.c **** 			}
+  16:./Core/Src/fsm_manual.c **** 
+  17:./Core/Src/fsm_manual.c **** 			if(isButtonPressed(1)){
+  81              		.loc 1 17 7
+  82 0058 0120     		movs	r0, #1
+  83 005a FFF7FEFF 		bl	isButtonPressed
+  84 005e 0346     		mov	r3, r0
+  85              		.loc 1 17 6
+  86 0060 002B     		cmp	r3, #0
+  87 0062 14D0     		beq	.L9
+  18:./Core/Src/fsm_manual.c **** 				isButtonPressed(2);
+  88              		.loc 1 18 5
+  89 0064 0220     		movs	r0, #2
+  90 0066 FFF7FEFF 		bl	isButtonPressed
+  19:./Core/Src/fsm_manual.c **** 				status = TUNING_RED1;
+  91              		.loc 1 19 12
+  92 006a 824B     		ldr	r3, .L27
+  93 006c 1522     		movs	r2, #21
+  94 006e 1A60     		str	r2, [r3]
+  20:./Core/Src/fsm_manual.c **** 				setTimer1(1000);
+  95              		.loc 1 20 5
+ARM GAS  C:\Users\ULTIMA~1\AppData\Local\Temp\cctSWvCQ.s 			page 3
+
+
+  96 0070 4FF47A70 		mov	r0, #1000
+  97 0074 FFF7FEFF 		bl	setTimer1
+  21:./Core/Src/fsm_manual.c **** 				counter = max_red1;
+  98              		.loc 1 21 13
+  99 0078 824B     		ldr	r3, .L27+16
+ 100 007a 1B68     		ldr	r3, [r3]
+ 101 007c 804A     		ldr	r2, .L27+12
+ 102 007e 1360     		str	r3, [r2]
+  22:./Core/Src/fsm_manual.c **** 				displayCounter();
+ 103              		.loc 1 22 5
+ 104 0080 FFF7FEFF 		bl	displayCounter
+  23:./Core/Src/fsm_manual.c **** 				clearTraffic1();
+ 105              		.loc 1 23 5
+ 106 0084 FFF7FEFF 		bl	clearTraffic1
+  24:./Core/Src/fsm_manual.c **** 				clearTraffic2();
+ 107              		.loc 1 24 5
+ 108 0088 FFF7FEFF 		bl	clearTraffic2
+  25:./Core/Src/fsm_manual.c **** 				break;
+ 109              		.loc 1 25 5
+ 110 008c EFE0     		b	.L10
+ 111              	.L9:
+  26:./Core/Src/fsm_manual.c **** 			}
+  27:./Core/Src/fsm_manual.c **** 
+  28:./Core/Src/fsm_manual.c **** 			if (isButtonPressed(2)) {
+ 112              		.loc 1 28 8
+ 113 008e 0220     		movs	r0, #2
+ 114 0090 FFF7FEFF 		bl	isButtonPressed
+ 115 0094 0346     		mov	r3, r0
+ 116              		.loc 1 28 7
+ 117 0096 002B     		cmp	r3, #0
+ 118 0098 00F0E280 		beq	.L22
+  29:./Core/Src/fsm_manual.c **** 				status = MAN_RED_YELLOW;
+ 119              		.loc 1 29 12
+ 120 009c 754B     		ldr	r3, .L27
+ 121 009e 0C22     		movs	r2, #12
+ 122 00a0 1A60     		str	r2, [r3]
+  30:./Core/Src/fsm_manual.c **** 				setTraffic1Red();
+ 123              		.loc 1 30 5
+ 124 00a2 FFF7FEFF 		bl	setTraffic1Red
+  31:./Core/Src/fsm_manual.c **** 				setTraffic2Yellow();
+ 125              		.loc 1 31 5
+ 126 00a6 FFF7FEFF 		bl	setTraffic2Yellow
+  32:./Core/Src/fsm_manual.c **** 				setTimer1(60000);
+ 127              		.loc 1 32 5
+ 128 00aa 4EF66020 		movw	r0, #60000
+ 129 00ae FFF7FEFF 		bl	setTimer1
+  33:./Core/Src/fsm_manual.c **** 			}
+  34:./Core/Src/fsm_manual.c **** 			break;
+ 130              		.loc 1 34 4
+ 131 00b2 D5E0     		b	.L22
+ 132              	.L6:
+  35:./Core/Src/fsm_manual.c **** 
+  36:./Core/Src/fsm_manual.c **** 		case MAN_RED_YELLOW:
+  37:./Core/Src/fsm_manual.c **** 			isButtonPressed(3);
+ 133              		.loc 1 37 4
+ 134 00b4 0320     		movs	r0, #3
+ 135 00b6 FFF7FEFF 		bl	isButtonPressed
+ARM GAS  C:\Users\ULTIMA~1\AppData\Local\Temp\cctSWvCQ.s 			page 4
+
+
+  38:./Core/Src/fsm_manual.c **** 			if(timer1_flag) {
+ 136              		.loc 1 38 7
+ 137 00ba 6F4B     		ldr	r3, .L27+4
+ 138 00bc 1B68     		ldr	r3, [r3]
+ 139              		.loc 1 38 6
+ 140 00be 002B     		cmp	r3, #0
+ 141 00c0 10D0     		beq	.L12
+  39:./Core/Src/fsm_manual.c **** 				status = AUTO_GREEN_RED;
+ 142              		.loc 1 39 12
+ 143 00c2 6C4B     		ldr	r3, .L27
+ 144 00c4 0422     		movs	r2, #4
+ 145 00c6 1A60     		str	r2, [r3]
+  40:./Core/Src/fsm_manual.c **** 				setTimer1(1000);
+ 146              		.loc 1 40 5
+ 147 00c8 4FF47A70 		mov	r0, #1000
+ 148 00cc FFF7FEFF 		bl	setTimer1
+  41:./Core/Src/fsm_manual.c **** 				counter = max_green1;
+ 149              		.loc 1 41 13
+ 150 00d0 6D4B     		ldr	r3, .L27+20
+ 151 00d2 1B68     		ldr	r3, [r3]
+ 152 00d4 6A4A     		ldr	r2, .L27+12
+ 153 00d6 1360     		str	r3, [r2]
+  42:./Core/Src/fsm_manual.c **** 				displayCounter();
+ 154              		.loc 1 42 5
+ 155 00d8 FFF7FEFF 		bl	displayCounter
+  43:./Core/Src/fsm_manual.c **** 				setTraffic1Green();
+ 156              		.loc 1 43 5
+ 157 00dc FFF7FEFF 		bl	setTraffic1Green
+  44:./Core/Src/fsm_manual.c **** 				setTraffic2Red();
+ 158              		.loc 1 44 5
+ 159 00e0 FFF7FEFF 		bl	setTraffic2Red
+ 160              	.L12:
+  45:./Core/Src/fsm_manual.c **** 			}
+  46:./Core/Src/fsm_manual.c **** 
+  47:./Core/Src/fsm_manual.c **** 			if(isButtonPressed(1)) {
+ 161              		.loc 1 47 7
+ 162 00e4 0120     		movs	r0, #1
+ 163 00e6 FFF7FEFF 		bl	isButtonPressed
+ 164 00ea 0346     		mov	r3, r0
+ 165              		.loc 1 47 6
+ 166 00ec 002B     		cmp	r3, #0
+ 167 00ee 16D0     		beq	.L13
+  48:./Core/Src/fsm_manual.c **** 				isButtonPressed(2);
+ 168              		.loc 1 48 5
+ 169 00f0 0220     		movs	r0, #2
+ 170 00f2 FFF7FEFF 		bl	isButtonPressed
+  49:./Core/Src/fsm_manual.c **** 				status = TUNING_RED1;
+ 171              		.loc 1 49 12
+ 172 00f6 5F4B     		ldr	r3, .L27
+ 173 00f8 1522     		movs	r2, #21
+ 174 00fa 1A60     		str	r2, [r3]
+  50:./Core/Src/fsm_manual.c **** 				setTimer1(1000);
+ 175              		.loc 1 50 5
+ 176 00fc 4FF47A70 		mov	r0, #1000
+ 177 0100 FFF7FEFF 		bl	setTimer1
+  51:./Core/Src/fsm_manual.c **** 				counter = max_red1;
+ 178              		.loc 1 51 13
+ARM GAS  C:\Users\ULTIMA~1\AppData\Local\Temp\cctSWvCQ.s 			page 5
+
+
+ 179 0104 5F4B     		ldr	r3, .L27+16
+ 180 0106 1B68     		ldr	r3, [r3]
+ 181 0108 5D4A     		ldr	r2, .L27+12
+ 182 010a 1360     		str	r3, [r2]
+  52:./Core/Src/fsm_manual.c **** 				displayCounter();
+ 183              		.loc 1 52 5
+ 184 010c FFF7FEFF 		bl	displayCounter
+  53:./Core/Src/fsm_manual.c **** 				clearTraffic1();
+ 185              		.loc 1 53 5
+ 186 0110 FFF7FEFF 		bl	clearTraffic1
+  54:./Core/Src/fsm_manual.c **** 				clearTraffic2();
+ 187              		.loc 1 54 5
+ 188 0114 FFF7FEFF 		bl	clearTraffic2
+  55:./Core/Src/fsm_manual.c **** 				isButtonPressed(2);
+ 189              		.loc 1 55 5
+ 190 0118 0220     		movs	r0, #2
+ 191 011a FFF7FEFF 		bl	isButtonPressed
+ 192              	.L13:
+  56:./Core/Src/fsm_manual.c **** 			}
+  57:./Core/Src/fsm_manual.c **** 
+  58:./Core/Src/fsm_manual.c **** 			if (isButtonPressed(2)) {
+ 193              		.loc 1 58 8
+ 194 011e 0220     		movs	r0, #2
+ 195 0120 FFF7FEFF 		bl	isButtonPressed
+ 196 0124 0346     		mov	r3, r0
+ 197              		.loc 1 58 7
+ 198 0126 002B     		cmp	r3, #0
+ 199 0128 00F09C80 		beq	.L23
+  59:./Core/Src/fsm_manual.c **** 				status = MAN_GREEN_RED;
+ 200              		.loc 1 59 12
+ 201 012c 514B     		ldr	r3, .L27
+ 202 012e 0D22     		movs	r2, #13
+ 203 0130 1A60     		str	r2, [r3]
+  60:./Core/Src/fsm_manual.c **** 				setTraffic1Green();
+ 204              		.loc 1 60 5
+ 205 0132 FFF7FEFF 		bl	setTraffic1Green
+  61:./Core/Src/fsm_manual.c **** 				setTraffic2Red();
+ 206              		.loc 1 61 5
+ 207 0136 FFF7FEFF 		bl	setTraffic2Red
+  62:./Core/Src/fsm_manual.c **** 				setTimer1(60000);
+ 208              		.loc 1 62 5
+ 209 013a 4EF66020 		movw	r0, #60000
+ 210 013e FFF7FEFF 		bl	setTimer1
+  63:./Core/Src/fsm_manual.c **** 			}
+  64:./Core/Src/fsm_manual.c **** 
+  65:./Core/Src/fsm_manual.c **** 
+  66:./Core/Src/fsm_manual.c **** 			break;
+ 211              		.loc 1 66 4
+ 212 0142 8FE0     		b	.L23
+ 213              	.L5:
+  67:./Core/Src/fsm_manual.c **** 
+  68:./Core/Src/fsm_manual.c **** 		case MAN_GREEN_RED:
+  69:./Core/Src/fsm_manual.c **** 			isButtonPressed(3);
+ 214              		.loc 1 69 4
+ 215 0144 0320     		movs	r0, #3
+ 216 0146 FFF7FEFF 		bl	isButtonPressed
+  70:./Core/Src/fsm_manual.c **** 			if(timer1_flag) {
+ARM GAS  C:\Users\ULTIMA~1\AppData\Local\Temp\cctSWvCQ.s 			page 6
+
+
+ 217              		.loc 1 70 7
+ 218 014a 4B4B     		ldr	r3, .L27+4
+ 219 014c 1B68     		ldr	r3, [r3]
+ 220              		.loc 1 70 6
+ 221 014e 002B     		cmp	r3, #0
+ 222 0150 10D0     		beq	.L15
+  71:./Core/Src/fsm_manual.c **** 				status = AUTO_YELLOW_RED;
+ 223              		.loc 1 71 12
+ 224 0152 484B     		ldr	r3, .L27
+ 225 0154 0522     		movs	r2, #5
+ 226 0156 1A60     		str	r2, [r3]
+  72:./Core/Src/fsm_manual.c **** 				setTimer1(1000);
+ 227              		.loc 1 72 5
+ 228 0158 4FF47A70 		mov	r0, #1000
+ 229 015c FFF7FEFF 		bl	setTimer1
+  73:./Core/Src/fsm_manual.c **** 				counter = max_yellow1;
+ 230              		.loc 1 73 13
+ 231 0160 4A4B     		ldr	r3, .L27+24
+ 232 0162 1B68     		ldr	r3, [r3]
+ 233 0164 464A     		ldr	r2, .L27+12
+ 234 0166 1360     		str	r3, [r2]
+  74:./Core/Src/fsm_manual.c **** 				displayCounter();
+ 235              		.loc 1 74 5
+ 236 0168 FFF7FEFF 		bl	displayCounter
+  75:./Core/Src/fsm_manual.c **** 				setTraffic1Yellow();
+ 237              		.loc 1 75 5
+ 238 016c FFF7FEFF 		bl	setTraffic1Yellow
+  76:./Core/Src/fsm_manual.c **** 				setTraffic2Red();
+ 239              		.loc 1 76 5
+ 240 0170 FFF7FEFF 		bl	setTraffic2Red
+ 241              	.L15:
+  77:./Core/Src/fsm_manual.c **** 			}
+  78:./Core/Src/fsm_manual.c **** 
+  79:./Core/Src/fsm_manual.c **** 			if(isButtonPressed(1)) {
+ 242              		.loc 1 79 7
+ 243 0174 0120     		movs	r0, #1
+ 244 0176 FFF7FEFF 		bl	isButtonPressed
+ 245 017a 0346     		mov	r3, r0
+ 246              		.loc 1 79 6
+ 247 017c 002B     		cmp	r3, #0
+ 248 017e 16D0     		beq	.L16
+  80:./Core/Src/fsm_manual.c **** 				isButtonPressed(2);
+ 249              		.loc 1 80 5
+ 250 0180 0220     		movs	r0, #2
+ 251 0182 FFF7FEFF 		bl	isButtonPressed
+  81:./Core/Src/fsm_manual.c **** 				status = TUNING_RED1;
+ 252              		.loc 1 81 12
+ 253 0186 3B4B     		ldr	r3, .L27
+ 254 0188 1522     		movs	r2, #21
+ 255 018a 1A60     		str	r2, [r3]
+  82:./Core/Src/fsm_manual.c **** 				setTimer1(1000);
+ 256              		.loc 1 82 5
+ 257 018c 4FF47A70 		mov	r0, #1000
+ 258 0190 FFF7FEFF 		bl	setTimer1
+  83:./Core/Src/fsm_manual.c **** 				counter = max_red1;
+ 259              		.loc 1 83 13
+ 260 0194 3B4B     		ldr	r3, .L27+16
+ARM GAS  C:\Users\ULTIMA~1\AppData\Local\Temp\cctSWvCQ.s 			page 7
+
+
+ 261 0196 1B68     		ldr	r3, [r3]
+ 262 0198 394A     		ldr	r2, .L27+12
+ 263 019a 1360     		str	r3, [r2]
+  84:./Core/Src/fsm_manual.c **** 				displayCounter();
+ 264              		.loc 1 84 5
+ 265 019c FFF7FEFF 		bl	displayCounter
+  85:./Core/Src/fsm_manual.c **** 				clearTraffic1();
+ 266              		.loc 1 85 5
+ 267 01a0 FFF7FEFF 		bl	clearTraffic1
+  86:./Core/Src/fsm_manual.c **** 				clearTraffic2();
+ 268              		.loc 1 86 5
+ 269 01a4 FFF7FEFF 		bl	clearTraffic2
+  87:./Core/Src/fsm_manual.c **** 				isButtonPressed(2);
+ 270              		.loc 1 87 5
+ 271 01a8 0220     		movs	r0, #2
+ 272 01aa FFF7FEFF 		bl	isButtonPressed
+ 273              	.L16:
+  88:./Core/Src/fsm_manual.c **** 			}
+  89:./Core/Src/fsm_manual.c **** 
+  90:./Core/Src/fsm_manual.c **** 			if (isButtonPressed(2)) {
+ 274              		.loc 1 90 8
+ 275 01ae 0220     		movs	r0, #2
+ 276 01b0 FFF7FEFF 		bl	isButtonPressed
+ 277 01b4 0346     		mov	r3, r0
+ 278              		.loc 1 90 7
+ 279 01b6 002B     		cmp	r3, #0
+ 280 01b8 56D0     		beq	.L24
+  91:./Core/Src/fsm_manual.c **** 				status = MAN_YELLOW_RED;
+ 281              		.loc 1 91 12
+ 282 01ba 2E4B     		ldr	r3, .L27
+ 283 01bc 0E22     		movs	r2, #14
+ 284 01be 1A60     		str	r2, [r3]
+  92:./Core/Src/fsm_manual.c **** 				setTraffic1Yellow();
+ 285              		.loc 1 92 5
+ 286 01c0 FFF7FEFF 		bl	setTraffic1Yellow
+  93:./Core/Src/fsm_manual.c **** 				setTraffic2Red();
+ 287              		.loc 1 93 5
+ 288 01c4 FFF7FEFF 		bl	setTraffic2Red
+  94:./Core/Src/fsm_manual.c **** 				setTimer1(60000);
+ 289              		.loc 1 94 5
+ 290 01c8 4EF66020 		movw	r0, #60000
+ 291 01cc FFF7FEFF 		bl	setTimer1
+  95:./Core/Src/fsm_manual.c **** 			}
+  96:./Core/Src/fsm_manual.c **** 
+  97:./Core/Src/fsm_manual.c **** 			break;
+ 292              		.loc 1 97 4
+ 293 01d0 4AE0     		b	.L24
+ 294              	.L3:
+  98:./Core/Src/fsm_manual.c **** 
+  99:./Core/Src/fsm_manual.c **** 		case MAN_YELLOW_RED:
+ 100:./Core/Src/fsm_manual.c **** 			isButtonPressed(3);
+ 295              		.loc 1 100 4
+ 296 01d2 0320     		movs	r0, #3
+ 297 01d4 FFF7FEFF 		bl	isButtonPressed
+ 101:./Core/Src/fsm_manual.c **** 			if(timer1_flag) {
+ 298              		.loc 1 101 7
+ 299 01d8 274B     		ldr	r3, .L27+4
+ARM GAS  C:\Users\ULTIMA~1\AppData\Local\Temp\cctSWvCQ.s 			page 8
+
+
+ 300 01da 1B68     		ldr	r3, [r3]
+ 301              		.loc 1 101 6
+ 302 01dc 002B     		cmp	r3, #0
+ 303 01de 10D0     		beq	.L18
+ 102:./Core/Src/fsm_manual.c **** 				status = AUTO_RED_GREEN;
+ 304              		.loc 1 102 12
+ 305 01e0 244B     		ldr	r3, .L27
+ 306 01e2 0222     		movs	r2, #2
+ 307 01e4 1A60     		str	r2, [r3]
+ 103:./Core/Src/fsm_manual.c **** 				setTimer1(1000);
+ 308              		.loc 1 103 5
+ 309 01e6 4FF47A70 		mov	r0, #1000
+ 310 01ea FFF7FEFF 		bl	setTimer1
+ 104:./Core/Src/fsm_manual.c **** 				counter = max_red1;
+ 311              		.loc 1 104 13
+ 312 01ee 254B     		ldr	r3, .L27+16
+ 313 01f0 1B68     		ldr	r3, [r3]
+ 314 01f2 234A     		ldr	r2, .L27+12
+ 315 01f4 1360     		str	r3, [r2]
+ 105:./Core/Src/fsm_manual.c **** 				displayCounter();
+ 316              		.loc 1 105 5
+ 317 01f6 FFF7FEFF 		bl	displayCounter
+ 106:./Core/Src/fsm_manual.c **** 				setTraffic1Red();
+ 318              		.loc 1 106 5
+ 319 01fa FFF7FEFF 		bl	setTraffic1Red
+ 107:./Core/Src/fsm_manual.c **** 				setTraffic2Green();
+ 320              		.loc 1 107 5
+ 321 01fe FFF7FEFF 		bl	setTraffic2Green
+ 322              	.L18:
+ 108:./Core/Src/fsm_manual.c **** 			}
+ 109:./Core/Src/fsm_manual.c **** 
+ 110:./Core/Src/fsm_manual.c **** 			if(isButtonPressed(1)) {
+ 323              		.loc 1 110 7
+ 324 0202 0120     		movs	r0, #1
+ 325 0204 FFF7FEFF 		bl	isButtonPressed
+ 326 0208 0346     		mov	r3, r0
+ 327              		.loc 1 110 6
+ 328 020a 002B     		cmp	r3, #0
+ 329 020c 14D0     		beq	.L19
+ 111:./Core/Src/fsm_manual.c **** 				isButtonPressed(2);
+ 330              		.loc 1 111 5
+ 331 020e 0220     		movs	r0, #2
+ 332 0210 FFF7FEFF 		bl	isButtonPressed
+ 112:./Core/Src/fsm_manual.c **** 				status = TUNING_RED1;
+ 333              		.loc 1 112 12
+ 334 0214 174B     		ldr	r3, .L27
+ 335 0216 1522     		movs	r2, #21
+ 336 0218 1A60     		str	r2, [r3]
+ 113:./Core/Src/fsm_manual.c **** 				setTimer1(1000);
+ 337              		.loc 1 113 5
+ 338 021a 4FF47A70 		mov	r0, #1000
+ 339 021e FFF7FEFF 		bl	setTimer1
+ 114:./Core/Src/fsm_manual.c **** 				counter = max_red1;
+ 340              		.loc 1 114 13
+ 341 0222 184B     		ldr	r3, .L27+16
+ 342 0224 1B68     		ldr	r3, [r3]
+ 343 0226 164A     		ldr	r2, .L27+12
+ARM GAS  C:\Users\ULTIMA~1\AppData\Local\Temp\cctSWvCQ.s 			page 9
+
+
+ 344 0228 1360     		str	r3, [r2]
+ 115:./Core/Src/fsm_manual.c **** 				displayCounter();
+ 345              		.loc 1 115 5
+ 346 022a FFF7FEFF 		bl	displayCounter
+ 116:./Core/Src/fsm_manual.c **** 				clearTraffic1();
+ 347              		.loc 1 116 5
+ 348 022e FFF7FEFF 		bl	clearTraffic1
+ 117:./Core/Src/fsm_manual.c **** 				clearTraffic2();
+ 349              		.loc 1 117 5
+ 350 0232 FFF7FEFF 		bl	clearTraffic2
+ 118:./Core/Src/fsm_manual.c **** 				break;
+ 351              		.loc 1 118 5
+ 352 0236 1AE0     		b	.L10
+ 353              	.L19:
+ 119:./Core/Src/fsm_manual.c **** 			}
+ 120:./Core/Src/fsm_manual.c **** 
+ 121:./Core/Src/fsm_manual.c **** 			if (isButtonPressed(2)) {
+ 354              		.loc 1 121 8
+ 355 0238 0220     		movs	r0, #2
+ 356 023a FFF7FEFF 		bl	isButtonPressed
+ 357 023e 0346     		mov	r3, r0
+ 358              		.loc 1 121 7
+ 359 0240 002B     		cmp	r3, #0
+ 360 0242 13D0     		beq	.L25
+ 122:./Core/Src/fsm_manual.c **** 				status = MAN_RED_GREEN;
+ 361              		.loc 1 122 12
+ 362 0244 0B4B     		ldr	r3, .L27
+ 363 0246 0B22     		movs	r2, #11
+ 364 0248 1A60     		str	r2, [r3]
+ 123:./Core/Src/fsm_manual.c **** 				setTraffic1Red();
+ 365              		.loc 1 123 5
+ 366 024a FFF7FEFF 		bl	setTraffic1Red
+ 124:./Core/Src/fsm_manual.c **** 				setTraffic2Green();
+ 367              		.loc 1 124 5
+ 368 024e FFF7FEFF 		bl	setTraffic2Green
+ 125:./Core/Src/fsm_manual.c **** 				setTimer1(60000);
+ 369              		.loc 1 125 5
+ 370 0252 4EF66020 		movw	r0, #60000
+ 371 0256 FFF7FEFF 		bl	setTimer1
+ 126:./Core/Src/fsm_manual.c **** 			}
+ 127:./Core/Src/fsm_manual.c **** 
+ 128:./Core/Src/fsm_manual.c **** 
+ 129:./Core/Src/fsm_manual.c **** 			break;
+ 372              		.loc 1 129 4
+ 373 025a 07E0     		b	.L25
+ 374              	.L21:
+ 130:./Core/Src/fsm_manual.c **** 		default:
+ 131:./Core/Src/fsm_manual.c **** 			break;
+ 375              		.loc 1 131 4
+ 376 025c 00BF     		nop
+ 377 025e 06E0     		b	.L26
+ 378              	.L22:
+  34:./Core/Src/fsm_manual.c **** 
+ 379              		.loc 1 34 4
+ 380 0260 00BF     		nop
+ 381 0262 04E0     		b	.L26
+ 382              	.L23:
+ARM GAS  C:\Users\ULTIMA~1\AppData\Local\Temp\cctSWvCQ.s 			page 10
+
+
+  66:./Core/Src/fsm_manual.c **** 
+ 383              		.loc 1 66 4
+ 384 0264 00BF     		nop
+ 385 0266 02E0     		b	.L26
+ 386              	.L24:
+  97:./Core/Src/fsm_manual.c **** 
+ 387              		.loc 1 97 4
+ 388 0268 00BF     		nop
+ 389 026a 00E0     		b	.L26
+ 390              	.L25:
+ 129:./Core/Src/fsm_manual.c **** 		default:
+ 391              		.loc 1 129 4
+ 392 026c 00BF     		nop
+ 393              	.L10:
+ 394              	.L26:
+ 132:./Core/Src/fsm_manual.c **** 	}
+ 133:./Core/Src/fsm_manual.c **** }
+ 395              		.loc 1 133 1
+ 396 026e 00BF     		nop
+ 397 0270 80BD     		pop	{r7, pc}
+ 398              	.L28:
+ 399 0272 00BF     		.align	2
+ 400              	.L27:
+ 401 0274 00000000 		.word	status
+ 402 0278 00000000 		.word	timer1_flag
+ 403 027c 00000000 		.word	max_yellow2
+ 404 0280 00000000 		.word	counter
+ 405 0284 00000000 		.word	max_red1
+ 406 0288 00000000 		.word	max_green1
+ 407 028c 00000000 		.word	max_yellow1
+ 408              		.cfi_endproc
+ 409              	.LFE68:
+ 411              		.text
+ 412              	.Letext0:
+ 413              		.file 2 "Core/Inc/timer.h"
+ 414              		.file 3 "Core/Inc/global.h"
+ 415              		.file 4 "Core/Inc/traffic.h"
+ 416              		.file 5 "Core/Inc/button.h"
+ARM GAS  C:\Users\ULTIMA~1\AppData\Local\Temp\cctSWvCQ.s 			page 11
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 fsm_manual.c
+C:\Users\ULTIMA~1\AppData\Local\Temp\cctSWvCQ.s:18     .text.fsm_manual_run:0000000000000000 $t
+C:\Users\ULTIMA~1\AppData\Local\Temp\cctSWvCQ.s:24     .text.fsm_manual_run:0000000000000000 fsm_manual_run
+C:\Users\ULTIMA~1\AppData\Local\Temp\cctSWvCQ.s:47     .text.fsm_manual_run:0000000000000018 $d
+C:\Users\ULTIMA~1\AppData\Local\Temp\cctSWvCQ.s:51     .text.fsm_manual_run:0000000000000028 $t
+C:\Users\ULTIMA~1\AppData\Local\Temp\cctSWvCQ.s:401    .text.fsm_manual_run:0000000000000274 $d
+                           .group:0000000000000000 wm4.0.cb5f01749778df26340c4505df3d34d0
+                           .group:0000000000000000 wm4.stm32f1xx_hal_conf.h.21.98635006afa9a018cfa5e0632ed4968b
+                           .group:0000000000000000 wm4.stm32f1xx.h.39.208bb8a61c892b7c37d899c49a031330
+                           .group:0000000000000000 wm4.stm32f103xb.h.38.ec967d5ad9d3269cb0788eebda048e38
+                           .group:0000000000000000 wm4._newlib_version.h.4.bfdf54b0af045d4a71376ae00f63a22c
+                           .group:0000000000000000 wm4.features.h.33.318b64d71e0957639cfb30f1db1f7ec8
+                           .group:0000000000000000 wm4._default_types.h.15.247e5cd201eca3442cbf5404108c4935
+                           .group:0000000000000000 wm4._intsup.h.10.48bafbb683905c4daa4565a85aeeb264
+                           .group:0000000000000000 wm4._stdint.h.10.c24fa3af3bc1706662bb5593a907e841
+                           .group:0000000000000000 wm4.stdint.h.23.d53047a68f4a85177f80b422d52785ed
+                           .group:0000000000000000 wm4.cmsis_version.h.32.4d5822004c01a829a975260e854b5f8e
+                           .group:0000000000000000 wm4.core_cm3.h.66.fc46cac19810db8f98d67da7ef88f42c
+                           .group:0000000000000000 wm4.cmsis_gcc.h.26.4f5798e999d5690b80e6ded3ecc94b37
+                           .group:0000000000000000 wm4.core_cm3.h.127.f4474120f1a7524deb56f9d74ff175da
+                           .group:0000000000000000 wm4.stm32f103xb.h.573.10249aa7473ca93be896fed94046a725
+                           .group:0000000000000000 wm4.stm32f1xx.h.162.96b09079a093c34dbd7f0b85cbd0ddee
+                           .group:0000000000000000 wm4.stm32_hal_legacy.h.23.91ba5b544a4c2be2620a1e7ff0049e10
+                           .group:0000000000000000 wm4.stddef.h.39.144cf5ddcd53cbfdac30259dc1a6c87f
+                           .group:0000000000000000 wm4.stm32f1xx_hal_def.h.57.18d01ce1aa74e9fb44dbf16f821a574a
+                           .group:0000000000000000 wm4.stm32f1xx_hal_rcc.h.95.21591bbc513aaa813c0b8640c3b32517
+                           .group:0000000000000000 wm4.stm32f1xx_hal_rcc_ex.h.22.8763f99bc1e3e2dcf0febe9161d81b37
+                           .group:0000000000000000 wm4.stm32f1xx_hal_rcc.h.1202.f8e5f9e0cf4eef7840facf5396029056
+                           .group:0000000000000000 wm4.stm32f1xx_hal_gpio.h.22.fa638d688dcc57ca806fe6a7831b0d04
+                           .group:0000000000000000 wm4.stm32f1xx_hal_gpio_ex.h.22.51a50ef3512cd78017ce666a32d364bf
+                           .group:0000000000000000 wm4.stm32f1xx_hal_gpio.h.263.f5ebf2f545ade59412ab9261c8e35dc4
+                           .group:0000000000000000 wm4.stm32f1xx_hal_exti.h.22.e26491d042c8079c3ca67eca341af862
+                           .group:0000000000000000 wm4.stm32f1xx_hal_dma.h.22.3c14338534886827bf3aeaa2a7f412a1
+                           .group:0000000000000000 wm4.stm32f1xx_hal_dma_ex.h.22.001ac4d7f81ccbdcae49bd65c13858c8
+                           .group:0000000000000000 wm4.stm32f1xx_hal_dma.h.409.cafcd2cfe701091535636be537c18293
+                           .group:0000000000000000 wm4.stm32f1xx_hal_cortex.h.22.b5f4174bb6a50d95405567b8f50e0900
+                           .group:0000000000000000 wm4.stm32f1xx_hal_flash.h.22.5cea9a7210e6315b41724b47b5fdf203
+                           .group:0000000000000000 wm4.stm32f1xx_hal_flash_ex.h.22.d4e19c21f2a86fa2f8ec2c2d5f1ab2af
+                           .group:0000000000000000 wm4.stm32f1xx_hal_pwr.h.22.3438c476faafc3240bf146f143df3fcd
+                           .group:0000000000000000 wm4.stm32f1xx_hal_tim.h.22.a16e206564e97dbace9faae59a0d6008
+                           .group:0000000000000000 wm4.stm32f1xx_hal_uart.h.22.5f7992e497faa36aa98f09f7214f4dbb
+                           .group:0000000000000000 wm4.stm32f1xx_hal.h.88.91065c0692bed6019c34f1e9c00589fd
+                           .group:0000000000000000 wm4.newlib.h.8.7cb3972cd43265932d4782d5eb589854
+                           .group:0000000000000000 wm4.ieeefp.h.77.25247dc27dbe3b23bfe98c2dc18f6ac5
+                           .group:0000000000000000 wm4.config.h.224.c701144a7b0518c6ee9b9b5465b79f81
+                           .group:0000000000000000 wm4._ansi.h.31.de524f58584151836e90d8620a16f8e8
+                           .group:0000000000000000 wm4.stdio.h.31.7c0e28c411445f3f9c5b11accf882760
+                           .group:0000000000000000 wm4.stddef.h.155.ba788add86a0e365f264484f110c3c29
+                           .group:0000000000000000 wm4.cdefs.h.49.39045112216f6a021dbdffe3bf5accce
+                           .group:0000000000000000 wm4.stdarg.h.34.3a23a216c0c293b3d2ea2e89281481e6
+                           .group:0000000000000000 wm4._types.h.20.dd0d04dca3800a0d2a6129b87f3adbb2
+                           .group:0000000000000000 wm4.stddef.h.155.3588ebfdd1e8c7ede80509bb9c3b8009
+                           .group:0000000000000000 wm4._types.h.127.34941de1b2539d59d5cac00e0dd27a45
+                           .group:0000000000000000 wm4.reent.h.17.e292bf8b0bec6c96e131a54347145a30
+                           .group:0000000000000000 wm4.lock.h.2.1461d1fff82dffe8bfddc23307f6484f
+                           .group:0000000000000000 wm4.reent.h.77.dcd6129ff07fe81bd5636db29abe53b2
+ARM GAS  C:\Users\ULTIMA~1\AppData\Local\Temp\cctSWvCQ.s 			page 12
+
+
+                           .group:0000000000000000 wm4.types.h.40.8b6acba56cefbb11746718204edc8f5e
+                           .group:0000000000000000 wm4._endian.h.31.65a10590763c3dde1ac4a7f66d7d4891
+                           .group:0000000000000000 wm4.endian.h.9.49f3a4695c1b61e8a0808de3c4a106cb
+                           .group:0000000000000000 wm4._timeval.h.32.bec3221fa7a9bb0bdde696c9c57e47d2
+                           .group:0000000000000000 wm4.timespec.h.41.d855182eb0e690443ab8651bcedca6e1
+                           .group:0000000000000000 wm4.select.h.19.40cd3f2bfc456b193b790c2754690ebf
+                           .group:0000000000000000 wm4.types.h.51.5571ec98f267d17d3c670b7a3ba33afa
+                           .group:0000000000000000 wm4.sched.h.22.c60982713a5c428609783c78f9c78d95
+                           .group:0000000000000000 wm4._pthreadtypes.h.36.fcee9961c35163dde6267ef772ad1972
+                           .group:0000000000000000 wm4.stdio.h.2.4aa87247282eca6c8f36f9de33d8df1a
+                           .group:0000000000000000 wm4.stdio.h.81.932d0c162786b883f622b8d05c120c78
+                           .group:0000000000000000 wm4.main.h.66.f6c32797044e6683294f2b743aea3471
+                           .group:0000000000000000 wm4.button.h.9.c6366124cd589a43ad584300c9157129
+                           .group:0000000000000000 wm4.scheduler.h.4.83ce304dfb906999b52630f400dd3d97
+                           .group:0000000000000000 wm4.global.h.12.cde98173854399505bb16cbc58c7b8b7
+
+UNDEFINED SYMBOLS
+isButtonPressed
+setTimer1
+displayCounter
+setTraffic1Red
+setTraffic2Yellow
+clearTraffic1
+clearTraffic2
+setTraffic1Green
+setTraffic2Red
+setTraffic1Yellow
+setTraffic2Green
+status
+timer1_flag
+max_yellow2
+counter
+max_red1
+max_green1
+max_yellow1

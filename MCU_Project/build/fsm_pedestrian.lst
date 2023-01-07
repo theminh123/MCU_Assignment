@@ -1,0 +1,544 @@
+ARM GAS  C:\Users\ULTIMA~1\AppData\Local\Temp\ccy4EJqb.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"fsm_pedestrian.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.global	PWM
+  18              		.section	.bss.PWM,"aw",%nobits
+  19              		.align	2
+  22              	PWM:
+  23 0000 00000000 		.space	4
+  24              		.section	.text.fsm_pedestrian_run,"ax",%progbits
+  25              		.align	1
+  26              		.global	fsm_pedestrian_run
+  27              		.syntax unified
+  28              		.thumb
+  29              		.thumb_func
+  31              	fsm_pedestrian_run:
+  32              	.LFB68:
+  33              		.file 1 "./Core/Src/fsm_pedestrian.c"
+   1:./Core/Src/fsm_pedestrian.c **** 
+   2:./Core/Src/fsm_pedestrian.c **** 
+   3:./Core/Src/fsm_pedestrian.c **** #include "fsm_pedestrian.h"
+   4:./Core/Src/fsm_pedestrian.c **** 
+   5:./Core/Src/fsm_pedestrian.c **** int PWM = 0;
+   6:./Core/Src/fsm_pedestrian.c **** 
+   7:./Core/Src/fsm_pedestrian.c **** void fsm_pedestrian_run(){
+  34              		.loc 1 7 26
+  35              		.cfi_startproc
+  36              		@ args = 0, pretend = 0, frame = 0
+  37              		@ frame_needed = 1, uses_anonymous_args = 0
+  38 0000 80B5     		push	{r7, lr}
+  39              		.cfi_def_cfa_offset 8
+  40              		.cfi_offset 7, -8
+  41              		.cfi_offset 14, -4
+  42 0002 00AF     		add	r7, sp, #0
+  43              		.cfi_def_cfa_register 7
+   8:./Core/Src/fsm_pedestrian.c **** 	switch(pedestrianStatus) {
+  44              		.loc 1 8 2
+  45 0004 654B     		ldr	r3, .L28
+  46 0006 1B68     		ldr	r3, [r3]
+  47 0008 013B     		subs	r3, r3, #1
+  48 000a 032B     		cmp	r3, #3
+  49 000c 00F2BD80 		bhi	.L23
+  50 0010 01A2     		adr	r2, .L4
+  51 0012 52F823F0 		ldr	pc, [r2, r3, lsl #2]
+  52 0016 00BF     		.p2align 2
+ARM GAS  C:\Users\ULTIMA~1\AppData\Local\Temp\ccy4EJqb.s 			page 2
+
+
+  53              	.L4:
+  54 0018 29000000 		.word	.L7+1
+  55 001c 35000000 		.word	.L6+1
+  56 0020 B5000000 		.word	.L5+1
+  57 0024 03010000 		.word	.L3+1
+  58              		.p2align 1
+  59              	.L7:
+   9:./Core/Src/fsm_pedestrian.c **** 		case INIT:
+  10:./Core/Src/fsm_pedestrian.c **** 			clearPedestrian();
+  60              		.loc 1 10 4
+  61 0028 FFF7FEFF 		bl	clearPedestrian
+  11:./Core/Src/fsm_pedestrian.c **** 			pedestrianStatus = PED_NONE;
+  62              		.loc 1 11 21
+  63 002c 5B4B     		ldr	r3, .L28
+  64 002e 0222     		movs	r2, #2
+  65 0030 1A60     		str	r2, [r3]
+  12:./Core/Src/fsm_pedestrian.c **** 			break;
+  66              		.loc 1 12 4
+  67 0032 B1E0     		b	.L8
+  68              	.L6:
+  13:./Core/Src/fsm_pedestrian.c **** 		case PED_NONE:
+  14:./Core/Src/fsm_pedestrian.c **** 			if(isButtonPressed(0)){
+  69              		.loc 1 14 7
+  70 0034 0020     		movs	r0, #0
+  71 0036 FFF7FEFF 		bl	isButtonPressed
+  72 003a 0346     		mov	r3, r0
+  73              		.loc 1 14 6
+  74 003c 002B     		cmp	r3, #0
+  75 003e 00F0A680 		beq	.L24
+  15:./Core/Src/fsm_pedestrian.c **** 				if(status == AUTO_RED_GREEN || status == AUTO_RED_YELLOW){
+  76              		.loc 1 15 15
+  77 0042 574B     		ldr	r3, .L28+4
+  78 0044 1B68     		ldr	r3, [r3]
+  79              		.loc 1 15 7
+  80 0046 022B     		cmp	r3, #2
+  81 0048 03D0     		beq	.L10
+  82              		.loc 1 15 43 discriminator 1
+  83 004a 554B     		ldr	r3, .L28+4
+  84 004c 1B68     		ldr	r3, [r3]
+  85              		.loc 1 15 33 discriminator 1
+  86 004e 032B     		cmp	r3, #3
+  87 0050 08D1     		bne	.L11
+  88              	.L10:
+  16:./Core/Src/fsm_pedestrian.c **** 					pedestrianStatus = PED_GREEN;
+  89              		.loc 1 16 23
+  90 0052 524B     		ldr	r3, .L28
+  91 0054 0422     		movs	r2, #4
+  92 0056 1A60     		str	r2, [r3]
+  17:./Core/Src/fsm_pedestrian.c **** 					setPedestrianGreen();
+  93              		.loc 1 17 6
+  94 0058 FFF7FEFF 		bl	setPedestrianGreen
+  18:./Core/Src/fsm_pedestrian.c **** 					setTimer2(250);
+  95              		.loc 1 18 6
+  96 005c FA20     		movs	r0, #250
+  97 005e FFF7FEFF 		bl	setTimer2
+  98 0062 26E0     		b	.L9
+  99              	.L11:
+ARM GAS  C:\Users\ULTIMA~1\AppData\Local\Temp\ccy4EJqb.s 			page 3
+
+
+  19:./Core/Src/fsm_pedestrian.c **** 				}else if(status == MAN_RED_GREEN || status == MAN_RED_YELLOW ){
+ 100              		.loc 1 19 21
+ 101 0064 4E4B     		ldr	r3, .L28+4
+ 102 0066 1B68     		ldr	r3, [r3]
+ 103              		.loc 1 19 13
+ 104 0068 0B2B     		cmp	r3, #11
+ 105 006a 03D0     		beq	.L12
+ 106              		.loc 1 19 48 discriminator 1
+ 107 006c 4C4B     		ldr	r3, .L28+4
+ 108 006e 1B68     		ldr	r3, [r3]
+ 109              		.loc 1 19 38 discriminator 1
+ 110 0070 0C2B     		cmp	r3, #12
+ 111 0072 08D1     		bne	.L13
+ 112              	.L12:
+  20:./Core/Src/fsm_pedestrian.c **** 					pedestrianStatus = PED_GREEN;
+ 113              		.loc 1 20 23
+ 114 0074 494B     		ldr	r3, .L28
+ 115 0076 0422     		movs	r2, #4
+ 116 0078 1A60     		str	r2, [r3]
+  21:./Core/Src/fsm_pedestrian.c **** 					setPedestrianGreen();
+ 117              		.loc 1 21 6
+ 118 007a FFF7FEFF 		bl	setPedestrianGreen
+  22:./Core/Src/fsm_pedestrian.c **** 					setTimer2(0);
+ 119              		.loc 1 22 6
+ 120 007e 0020     		movs	r0, #0
+ 121 0080 FFF7FEFF 		bl	setTimer2
+ 122 0084 15E0     		b	.L9
+ 123              	.L13:
+  23:./Core/Src/fsm_pedestrian.c **** 				}
+  24:./Core/Src/fsm_pedestrian.c **** 				else if(status == AUTO_GREEN_RED || status == MAN_GREEN_RED || status == AUTO_YELLOW_RED || sta
+ 124              		.loc 1 24 20
+ 125 0086 464B     		ldr	r3, .L28+4
+ 126 0088 1B68     		ldr	r3, [r3]
+ 127              		.loc 1 24 12
+ 128 008a 042B     		cmp	r3, #4
+ 129 008c 0BD0     		beq	.L14
+ 130              		.loc 1 24 48 discriminator 1
+ 131 008e 444B     		ldr	r3, .L28+4
+ 132 0090 1B68     		ldr	r3, [r3]
+ 133              		.loc 1 24 38 discriminator 1
+ 134 0092 0D2B     		cmp	r3, #13
+ 135 0094 07D0     		beq	.L14
+ 136              		.loc 1 24 75 discriminator 2
+ 137 0096 424B     		ldr	r3, .L28+4
+ 138 0098 1B68     		ldr	r3, [r3]
+ 139              		.loc 1 24 65 discriminator 2
+ 140 009a 052B     		cmp	r3, #5
+ 141 009c 03D0     		beq	.L14
+ 142              		.loc 1 24 104 discriminator 3
+ 143 009e 404B     		ldr	r3, .L28+4
+ 144 00a0 1B68     		ldr	r3, [r3]
+ 145              		.loc 1 24 94 discriminator 3
+ 146 00a2 0E2B     		cmp	r3, #14
+ 147 00a4 73D1     		bne	.L24
+ 148              	.L14:
+  25:./Core/Src/fsm_pedestrian.c **** 					pedestrianStatus = PED_RED;
+ 149              		.loc 1 25 23
+ARM GAS  C:\Users\ULTIMA~1\AppData\Local\Temp\ccy4EJqb.s 			page 4
+
+
+ 150 00a6 3D4B     		ldr	r3, .L28
+ 151 00a8 0322     		movs	r2, #3
+ 152 00aa 1A60     		str	r2, [r3]
+  26:./Core/Src/fsm_pedestrian.c **** 					setPedestrianRed();
+ 153              		.loc 1 26 6
+ 154 00ac FFF7FEFF 		bl	setPedestrianRed
+  27:./Core/Src/fsm_pedestrian.c **** 				}
+  28:./Core/Src/fsm_pedestrian.c **** 			}
+  29:./Core/Src/fsm_pedestrian.c **** 			break;
+ 155              		.loc 1 29 4
+ 156 00b0 6DE0     		b	.L24
+ 157              	.L9:
+ 158 00b2 6CE0     		b	.L24
+ 159              	.L5:
+  30:./Core/Src/fsm_pedestrian.c **** 		case PED_RED:
+  31:./Core/Src/fsm_pedestrian.c **** 			if(timer3_flag){
+ 160              		.loc 1 31 7
+ 161 00b4 3B4B     		ldr	r3, .L28+8
+ 162 00b6 1B68     		ldr	r3, [r3]
+ 163              		.loc 1 31 6
+ 164 00b8 002B     		cmp	r3, #0
+ 165 00ba 08D0     		beq	.L15
+  32:./Core/Src/fsm_pedestrian.c **** 				timer3_flag = 0;
+ 166              		.loc 1 32 17
+ 167 00bc 394B     		ldr	r3, .L28+8
+ 168 00be 0022     		movs	r2, #0
+ 169 00c0 1A60     		str	r2, [r3]
+  33:./Core/Src/fsm_pedestrian.c **** 				pedestrianStatus = PED_NONE;
+ 170              		.loc 1 33 22
+ 171 00c2 364B     		ldr	r3, .L28
+ 172 00c4 0222     		movs	r2, #2
+ 173 00c6 1A60     		str	r2, [r3]
+  34:./Core/Src/fsm_pedestrian.c **** 				clearPedestrian();
+ 174              		.loc 1 34 5
+ 175 00c8 FFF7FEFF 		bl	clearPedestrian
+  35:./Core/Src/fsm_pedestrian.c **** 				break;
+ 176              		.loc 1 35 5
+ 177 00cc 64E0     		b	.L8
+ 178              	.L15:
+  36:./Core/Src/fsm_pedestrian.c **** 			}
+  37:./Core/Src/fsm_pedestrian.c **** 			else if(status == AUTO_RED_GREEN){
+ 179              		.loc 1 37 19
+ 180 00ce 344B     		ldr	r3, .L28+4
+ 181 00d0 1B68     		ldr	r3, [r3]
+ 182              		.loc 1 37 11
+ 183 00d2 022B     		cmp	r3, #2
+ 184 00d4 08D1     		bne	.L16
+  38:./Core/Src/fsm_pedestrian.c **** 				pedestrianStatus = PED_GREEN;
+ 185              		.loc 1 38 22
+ 186 00d6 314B     		ldr	r3, .L28
+ 187 00d8 0422     		movs	r2, #4
+ 188 00da 1A60     		str	r2, [r3]
+  39:./Core/Src/fsm_pedestrian.c **** 				setPedestrianGreen();
+ 189              		.loc 1 39 5
+ 190 00dc FFF7FEFF 		bl	setPedestrianGreen
+  40:./Core/Src/fsm_pedestrian.c **** 				setTimer2(250);
+ 191              		.loc 1 40 5
+ARM GAS  C:\Users\ULTIMA~1\AppData\Local\Temp\ccy4EJqb.s 			page 5
+
+
+ 192 00e0 FA20     		movs	r0, #250
+ 193 00e2 FFF7FEFF 		bl	setTimer2
+  41:./Core/Src/fsm_pedestrian.c **** 			}
+  42:./Core/Src/fsm_pedestrian.c **** 			else if (status == MAN_RED_GREEN){
+  43:./Core/Src/fsm_pedestrian.c **** 				pedestrianStatus = PED_GREEN;
+  44:./Core/Src/fsm_pedestrian.c **** 				setPedestrianGreen();
+  45:./Core/Src/fsm_pedestrian.c **** 				setTimer2(0);
+  46:./Core/Src/fsm_pedestrian.c **** 			}
+  47:./Core/Src/fsm_pedestrian.c **** 			break;
+ 194              		.loc 1 47 4
+ 195 00e6 54E0     		b	.L25
+ 196              	.L16:
+  42:./Core/Src/fsm_pedestrian.c **** 				pedestrianStatus = PED_GREEN;
+ 197              		.loc 1 42 20
+ 198 00e8 2D4B     		ldr	r3, .L28+4
+ 199 00ea 1B68     		ldr	r3, [r3]
+  42:./Core/Src/fsm_pedestrian.c **** 				pedestrianStatus = PED_GREEN;
+ 200              		.loc 1 42 12
+ 201 00ec 0B2B     		cmp	r3, #11
+ 202 00ee 50D1     		bne	.L25
+  43:./Core/Src/fsm_pedestrian.c **** 				setPedestrianGreen();
+ 203              		.loc 1 43 22
+ 204 00f0 2A4B     		ldr	r3, .L28
+ 205 00f2 0422     		movs	r2, #4
+ 206 00f4 1A60     		str	r2, [r3]
+  44:./Core/Src/fsm_pedestrian.c **** 				setTimer2(0);
+ 207              		.loc 1 44 5
+ 208 00f6 FFF7FEFF 		bl	setPedestrianGreen
+  45:./Core/Src/fsm_pedestrian.c **** 			}
+ 209              		.loc 1 45 5
+ 210 00fa 0020     		movs	r0, #0
+ 211 00fc FFF7FEFF 		bl	setTimer2
+ 212              		.loc 1 47 4
+ 213 0100 47E0     		b	.L25
+ 214              	.L3:
+  48:./Core/Src/fsm_pedestrian.c **** 		case PED_GREEN:
+  49:./Core/Src/fsm_pedestrian.c **** 			if(timer2_flag){
+ 215              		.loc 1 49 7
+ 216 0102 294B     		ldr	r3, .L28+12
+ 217 0104 1B68     		ldr	r3, [r3]
+ 218              		.loc 1 49 6
+ 219 0106 002B     		cmp	r3, #0
+ 220 0108 21D0     		beq	.L18
+  50:./Core/Src/fsm_pedestrian.c **** 				if(PWM == 0){
+ 221              		.loc 1 50 12
+ 222 010a 284B     		ldr	r3, .L28+16
+ 223 010c 1B68     		ldr	r3, [r3]
+ 224              		.loc 1 50 7
+ 225 010e 002B     		cmp	r3, #0
+ 226 0110 12D1     		bne	.L19
+  51:./Core/Src/fsm_pedestrian.c **** 					PWM = 63-63*counter/max_red1;
+ 227              		.loc 1 51 17
+ 228 0112 274B     		ldr	r3, .L28+20
+ 229 0114 1A68     		ldr	r2, [r3]
+ 230 0116 1346     		mov	r3, r2
+ 231 0118 9B01     		lsls	r3, r3, #6
+ 232 011a 9A1A     		subs	r2, r3, r2
+ARM GAS  C:\Users\ULTIMA~1\AppData\Local\Temp\ccy4EJqb.s 			page 6
+
+
+ 233              		.loc 1 51 25
+ 234 011c 254B     		ldr	r3, .L28+24
+ 235 011e 1B68     		ldr	r3, [r3]
+ 236 0120 92FBF3F3 		sdiv	r3, r2, r3
+ 237              		.loc 1 51 14
+ 238 0124 C3F13F03 		rsb	r3, r3, #63
+ 239              		.loc 1 51 10
+ 240 0128 204A     		ldr	r2, .L28+16
+ 241 012a 1360     		str	r3, [r2]
+  52:./Core/Src/fsm_pedestrian.c **** 					__HAL_TIM_SetCompare(&htim3, TIM_CHANNEL_1,PWM);
+ 242              		.loc 1 52 6
+ 243 012c 1F4B     		ldr	r3, .L28+16
+ 244 012e 1A68     		ldr	r2, [r3]
+ 245 0130 214B     		ldr	r3, .L28+28
+ 246 0132 1B68     		ldr	r3, [r3]
+ 247 0134 5A63     		str	r2, [r3, #52]
+ 248 0136 07E0     		b	.L20
+ 249              	.L19:
+  53:./Core/Src/fsm_pedestrian.c **** 				} else {
+  54:./Core/Src/fsm_pedestrian.c **** 					PWM = 0;
+ 250              		.loc 1 54 10
+ 251 0138 1C4B     		ldr	r3, .L28+16
+ 252 013a 0022     		movs	r2, #0
+ 253 013c 1A60     		str	r2, [r3]
+  55:./Core/Src/fsm_pedestrian.c **** 					__HAL_TIM_SetCompare(&htim3, TIM_CHANNEL_1,PWM);
+ 254              		.loc 1 55 6
+ 255 013e 1B4B     		ldr	r3, .L28+16
+ 256 0140 1A68     		ldr	r2, [r3]
+ 257 0142 1D4B     		ldr	r3, .L28+28
+ 258 0144 1B68     		ldr	r3, [r3]
+ 259 0146 5A63     		str	r2, [r3, #52]
+ 260              	.L20:
+  56:./Core/Src/fsm_pedestrian.c **** 				}
+  57:./Core/Src/fsm_pedestrian.c **** 				setTimer2(250);
+ 261              		.loc 1 57 5
+ 262 0148 FA20     		movs	r0, #250
+ 263 014a FFF7FEFF 		bl	setTimer2
+ 264              	.L18:
+  58:./Core/Src/fsm_pedestrian.c **** 			}
+  59:./Core/Src/fsm_pedestrian.c **** 			if(status == AUTO_GREEN_RED || status == MAN_GREEN_RED || status == AUTO_YELLOW_RED || status ==
+ 265              		.loc 1 59 14
+ 266 014e 144B     		ldr	r3, .L28+4
+ 267 0150 1B68     		ldr	r3, [r3]
+ 268              		.loc 1 59 6
+ 269 0152 042B     		cmp	r3, #4
+ 270 0154 0BD0     		beq	.L21
+ 271              		.loc 1 59 42 discriminator 1
+ 272 0156 124B     		ldr	r3, .L28+4
+ 273 0158 1B68     		ldr	r3, [r3]
+ 274              		.loc 1 59 32 discriminator 1
+ 275 015a 0D2B     		cmp	r3, #13
+ 276 015c 07D0     		beq	.L21
+ 277              		.loc 1 59 69 discriminator 2
+ 278 015e 104B     		ldr	r3, .L28+4
+ 279 0160 1B68     		ldr	r3, [r3]
+ 280              		.loc 1 59 59 discriminator 2
+ 281 0162 052B     		cmp	r3, #5
+ARM GAS  C:\Users\ULTIMA~1\AppData\Local\Temp\ccy4EJqb.s 			page 7
+
+
+ 282 0164 03D0     		beq	.L21
+ 283              		.loc 1 59 98 discriminator 3
+ 284 0166 0E4B     		ldr	r3, .L28+4
+ 285 0168 1B68     		ldr	r3, [r3]
+ 286              		.loc 1 59 88 discriminator 3
+ 287 016a 0E2B     		cmp	r3, #14
+ 288 016c 13D1     		bne	.L26
+ 289              	.L21:
+  60:./Core/Src/fsm_pedestrian.c **** 				pedestrianStatus = PED_RED;
+ 290              		.loc 1 60 22
+ 291 016e 0B4B     		ldr	r3, .L28
+ 292 0170 0322     		movs	r2, #3
+ 293 0172 1A60     		str	r2, [r3]
+  61:./Core/Src/fsm_pedestrian.c **** 				setTimer3(2000);
+ 294              		.loc 1 61 5
+ 295 0174 4FF4FA60 		mov	r0, #2000
+ 296 0178 FFF7FEFF 		bl	setTimer3
+  62:./Core/Src/fsm_pedestrian.c **** 				setPedestrianRed();
+ 297              		.loc 1 62 5
+ 298 017c FFF7FEFF 		bl	setPedestrianRed
+  63:./Core/Src/fsm_pedestrian.c **** 				__HAL_TIM_SetCompare(&htim3, TIM_CHANNEL_1,0);
+ 299              		.loc 1 63 5
+ 300 0180 0D4B     		ldr	r3, .L28+28
+ 301 0182 1B68     		ldr	r3, [r3]
+ 302 0184 0022     		movs	r2, #0
+ 303 0186 5A63     		str	r2, [r3, #52]
+  64:./Core/Src/fsm_pedestrian.c **** 			}
+  65:./Core/Src/fsm_pedestrian.c **** 			break;
+ 304              		.loc 1 65 4
+ 305 0188 05E0     		b	.L26
+ 306              	.L23:
+  66:./Core/Src/fsm_pedestrian.c **** 		default:
+  67:./Core/Src/fsm_pedestrian.c **** 			break;
+ 307              		.loc 1 67 4
+ 308 018a 00BF     		nop
+ 309 018c 04E0     		b	.L27
+ 310              	.L24:
+  29:./Core/Src/fsm_pedestrian.c **** 		case PED_RED:
+ 311              		.loc 1 29 4
+ 312 018e 00BF     		nop
+ 313 0190 02E0     		b	.L27
+ 314              	.L25:
+  47:./Core/Src/fsm_pedestrian.c **** 		case PED_GREEN:
+ 315              		.loc 1 47 4
+ 316 0192 00BF     		nop
+ 317 0194 00E0     		b	.L27
+ 318              	.L26:
+  65:./Core/Src/fsm_pedestrian.c **** 		default:
+ 319              		.loc 1 65 4
+ 320 0196 00BF     		nop
+ 321              	.L8:
+ 322              	.L27:
+  68:./Core/Src/fsm_pedestrian.c **** 	}
+  69:./Core/Src/fsm_pedestrian.c **** }
+ 323              		.loc 1 69 1
+ 324 0198 00BF     		nop
+ 325 019a 80BD     		pop	{r7, pc}
+ARM GAS  C:\Users\ULTIMA~1\AppData\Local\Temp\ccy4EJqb.s 			page 8
+
+
+ 326              	.L29:
+ 327              		.align	2
+ 328              	.L28:
+ 329 019c 00000000 		.word	pedestrianStatus
+ 330 01a0 00000000 		.word	status
+ 331 01a4 00000000 		.word	timer3_flag
+ 332 01a8 00000000 		.word	timer2_flag
+ 333 01ac 00000000 		.word	PWM
+ 334 01b0 00000000 		.word	counter
+ 335 01b4 00000000 		.word	max_red1
+ 336 01b8 00000000 		.word	htim3
+ 337              		.cfi_endproc
+ 338              	.LFE68:
+ 340              		.text
+ 341              	.Letext0:
+ 342              		.file 2 "c:\\st\\stm32cubeide_1.10.1\\stm32cubeide\\plugins\\com.st.stm32cube.ide.mcu.externaltool
+ 343              		.file 3 "c:\\st\\stm32cubeide_1.10.1\\stm32cubeide\\plugins\\com.st.stm32cube.ide.mcu.externaltool
+ 344              		.file 4 "Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h"
+ 345              		.file 5 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h"
+ 346              		.file 6 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h"
+ 347              		.file 7 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h"
+ 348              		.file 8 "Core/Inc/main.h"
+ 349              		.file 9 "Core/Inc/timer.h"
+ 350              		.file 10 "Core/Inc/global.h"
+ 351              		.file 11 "Core/Inc/traffic.h"
+ 352              		.file 12 "Core/Inc/button.h"
+ARM GAS  C:\Users\ULTIMA~1\AppData\Local\Temp\ccy4EJqb.s 			page 9
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 fsm_pedestrian.c
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccy4EJqb.s:22     .bss.PWM:0000000000000000 PWM
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccy4EJqb.s:19     .bss.PWM:0000000000000000 $d
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccy4EJqb.s:25     .text.fsm_pedestrian_run:0000000000000000 $t
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccy4EJqb.s:31     .text.fsm_pedestrian_run:0000000000000000 fsm_pedestrian_run
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccy4EJqb.s:54     .text.fsm_pedestrian_run:0000000000000018 $d
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccy4EJqb.s:58     .text.fsm_pedestrian_run:0000000000000028 $t
+C:\Users\ULTIMA~1\AppData\Local\Temp\ccy4EJqb.s:329    .text.fsm_pedestrian_run:000000000000019c $d
+                           .group:0000000000000000 wm4.0.cb5f01749778df26340c4505df3d34d0
+                           .group:0000000000000000 wm4.stm32f1xx_hal_conf.h.21.98635006afa9a018cfa5e0632ed4968b
+                           .group:0000000000000000 wm4.stm32f1xx.h.39.208bb8a61c892b7c37d899c49a031330
+                           .group:0000000000000000 wm4.stm32f103xb.h.38.ec967d5ad9d3269cb0788eebda048e38
+                           .group:0000000000000000 wm4._newlib_version.h.4.bfdf54b0af045d4a71376ae00f63a22c
+                           .group:0000000000000000 wm4.features.h.33.318b64d71e0957639cfb30f1db1f7ec8
+                           .group:0000000000000000 wm4._default_types.h.15.247e5cd201eca3442cbf5404108c4935
+                           .group:0000000000000000 wm4._intsup.h.10.48bafbb683905c4daa4565a85aeeb264
+                           .group:0000000000000000 wm4._stdint.h.10.c24fa3af3bc1706662bb5593a907e841
+                           .group:0000000000000000 wm4.stdint.h.23.d53047a68f4a85177f80b422d52785ed
+                           .group:0000000000000000 wm4.cmsis_version.h.32.4d5822004c01a829a975260e854b5f8e
+                           .group:0000000000000000 wm4.core_cm3.h.66.fc46cac19810db8f98d67da7ef88f42c
+                           .group:0000000000000000 wm4.cmsis_gcc.h.26.4f5798e999d5690b80e6ded3ecc94b37
+                           .group:0000000000000000 wm4.core_cm3.h.127.f4474120f1a7524deb56f9d74ff175da
+                           .group:0000000000000000 wm4.stm32f103xb.h.573.10249aa7473ca93be896fed94046a725
+                           .group:0000000000000000 wm4.stm32f1xx.h.162.96b09079a093c34dbd7f0b85cbd0ddee
+                           .group:0000000000000000 wm4.stm32_hal_legacy.h.23.91ba5b544a4c2be2620a1e7ff0049e10
+                           .group:0000000000000000 wm4.stddef.h.39.144cf5ddcd53cbfdac30259dc1a6c87f
+                           .group:0000000000000000 wm4.stm32f1xx_hal_def.h.57.18d01ce1aa74e9fb44dbf16f821a574a
+                           .group:0000000000000000 wm4.stm32f1xx_hal_rcc.h.95.21591bbc513aaa813c0b8640c3b32517
+                           .group:0000000000000000 wm4.stm32f1xx_hal_rcc_ex.h.22.8763f99bc1e3e2dcf0febe9161d81b37
+                           .group:0000000000000000 wm4.stm32f1xx_hal_rcc.h.1202.f8e5f9e0cf4eef7840facf5396029056
+                           .group:0000000000000000 wm4.stm32f1xx_hal_gpio.h.22.fa638d688dcc57ca806fe6a7831b0d04
+                           .group:0000000000000000 wm4.stm32f1xx_hal_gpio_ex.h.22.51a50ef3512cd78017ce666a32d364bf
+                           .group:0000000000000000 wm4.stm32f1xx_hal_gpio.h.263.f5ebf2f545ade59412ab9261c8e35dc4
+                           .group:0000000000000000 wm4.stm32f1xx_hal_exti.h.22.e26491d042c8079c3ca67eca341af862
+                           .group:0000000000000000 wm4.stm32f1xx_hal_dma.h.22.3c14338534886827bf3aeaa2a7f412a1
+                           .group:0000000000000000 wm4.stm32f1xx_hal_dma_ex.h.22.001ac4d7f81ccbdcae49bd65c13858c8
+                           .group:0000000000000000 wm4.stm32f1xx_hal_dma.h.409.cafcd2cfe701091535636be537c18293
+                           .group:0000000000000000 wm4.stm32f1xx_hal_cortex.h.22.b5f4174bb6a50d95405567b8f50e0900
+                           .group:0000000000000000 wm4.stm32f1xx_hal_flash.h.22.5cea9a7210e6315b41724b47b5fdf203
+                           .group:0000000000000000 wm4.stm32f1xx_hal_flash_ex.h.22.d4e19c21f2a86fa2f8ec2c2d5f1ab2af
+                           .group:0000000000000000 wm4.stm32f1xx_hal_pwr.h.22.3438c476faafc3240bf146f143df3fcd
+                           .group:0000000000000000 wm4.stm32f1xx_hal_tim.h.22.a16e206564e97dbace9faae59a0d6008
+                           .group:0000000000000000 wm4.stm32f1xx_hal_uart.h.22.5f7992e497faa36aa98f09f7214f4dbb
+                           .group:0000000000000000 wm4.stm32f1xx_hal.h.88.91065c0692bed6019c34f1e9c00589fd
+                           .group:0000000000000000 wm4.newlib.h.8.7cb3972cd43265932d4782d5eb589854
+                           .group:0000000000000000 wm4.ieeefp.h.77.25247dc27dbe3b23bfe98c2dc18f6ac5
+                           .group:0000000000000000 wm4.config.h.224.c701144a7b0518c6ee9b9b5465b79f81
+                           .group:0000000000000000 wm4._ansi.h.31.de524f58584151836e90d8620a16f8e8
+                           .group:0000000000000000 wm4.stdio.h.31.7c0e28c411445f3f9c5b11accf882760
+                           .group:0000000000000000 wm4.stddef.h.155.ba788add86a0e365f264484f110c3c29
+                           .group:0000000000000000 wm4.cdefs.h.49.39045112216f6a021dbdffe3bf5accce
+                           .group:0000000000000000 wm4.stdarg.h.34.3a23a216c0c293b3d2ea2e89281481e6
+                           .group:0000000000000000 wm4._types.h.20.dd0d04dca3800a0d2a6129b87f3adbb2
+                           .group:0000000000000000 wm4.stddef.h.155.3588ebfdd1e8c7ede80509bb9c3b8009
+                           .group:0000000000000000 wm4._types.h.127.34941de1b2539d59d5cac00e0dd27a45
+                           .group:0000000000000000 wm4.reent.h.17.e292bf8b0bec6c96e131a54347145a30
+ARM GAS  C:\Users\ULTIMA~1\AppData\Local\Temp\ccy4EJqb.s 			page 10
+
+
+                           .group:0000000000000000 wm4.lock.h.2.1461d1fff82dffe8bfddc23307f6484f
+                           .group:0000000000000000 wm4.reent.h.77.dcd6129ff07fe81bd5636db29abe53b2
+                           .group:0000000000000000 wm4.types.h.40.8b6acba56cefbb11746718204edc8f5e
+                           .group:0000000000000000 wm4._endian.h.31.65a10590763c3dde1ac4a7f66d7d4891
+                           .group:0000000000000000 wm4.endian.h.9.49f3a4695c1b61e8a0808de3c4a106cb
+                           .group:0000000000000000 wm4._timeval.h.32.bec3221fa7a9bb0bdde696c9c57e47d2
+                           .group:0000000000000000 wm4.timespec.h.41.d855182eb0e690443ab8651bcedca6e1
+                           .group:0000000000000000 wm4.select.h.19.40cd3f2bfc456b193b790c2754690ebf
+                           .group:0000000000000000 wm4.types.h.51.5571ec98f267d17d3c670b7a3ba33afa
+                           .group:0000000000000000 wm4.sched.h.22.c60982713a5c428609783c78f9c78d95
+                           .group:0000000000000000 wm4._pthreadtypes.h.36.fcee9961c35163dde6267ef772ad1972
+                           .group:0000000000000000 wm4.stdio.h.2.4aa87247282eca6c8f36f9de33d8df1a
+                           .group:0000000000000000 wm4.stdio.h.81.932d0c162786b883f622b8d05c120c78
+                           .group:0000000000000000 wm4.main.h.66.f6c32797044e6683294f2b743aea3471
+                           .group:0000000000000000 wm4.button.h.9.c6366124cd589a43ad584300c9157129
+                           .group:0000000000000000 wm4.scheduler.h.4.83ce304dfb906999b52630f400dd3d97
+                           .group:0000000000000000 wm4.global.h.12.cde98173854399505bb16cbc58c7b8b7
+
+UNDEFINED SYMBOLS
+clearPedestrian
+isButtonPressed
+setPedestrianGreen
+setTimer2
+setPedestrianRed
+setTimer3
+pedestrianStatus
+status
+timer3_flag
+timer2_flag
+counter
+max_red1
+htim3
