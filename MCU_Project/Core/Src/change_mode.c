@@ -21,7 +21,7 @@ void mode_selector(void) {
 			 if(mode == 2) {
 				status = MAN_RED_GREEN;
 				setTimer1(60000);
-				counter = 99;
+				counter = 0;
 
 				HAL_GPIO_WritePin(TrafficLight1_0_GPIO_Port, TrafficLight1_0_Pin, GPIO_PIN_SET);
 				HAL_GPIO_WritePin(TrafficLight1_1_GPIO_Port, TrafficLight1_1_Pin, GPIO_PIN_RESET);
@@ -41,7 +41,8 @@ void mode_selector(void) {
 				displayCounter();
 			 }
 			 if(mode > 3){
-			 	mode = 1; //RESET MODE CYLCE
+			 	mode = 1;
+			 	status = INIT;//RESET MODE CYLCE
 			 }
 			 break;
 		}

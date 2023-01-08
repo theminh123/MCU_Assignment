@@ -3,7 +3,6 @@
 void fsm_manual() {
 	switch(status) {
 		case MAN_RED_GREEN:
-			isButtonPressed(3);
 			if(timer1_flag==1) {
 				status = AUTO_RED_YELLOW;
 				setTimer1(1000);
