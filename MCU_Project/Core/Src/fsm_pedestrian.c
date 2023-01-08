@@ -28,8 +28,8 @@ void fsm_pedestrian_run() {
 			}
 			break;
 		case PED_RED:
-			if(timer3_flag==1) {
-				timer3_flag = 0;
+			if(timer2_flag==1) {
+				timer2_flag = 0;
 				pedestrianStatus = PED_NONE;
 				HAL_GPIO_WritePin(PedestrianLight_0_GPIO_Port, PedestrianLight_0_Pin, GPIO_PIN_RESET);
 				HAL_GPIO_WritePin(PedestrianLight_1_GPIO_Port, PedestrianLight_1_Pin, GPIO_PIN_RESET);
@@ -61,7 +61,7 @@ void fsm_pedestrian_run() {
 			}
 			if(status == AUTO_GREEN_RED || status == MAN_GREEN_RED || status == AUTO_YELLOW_RED || status == MAN_YELLOW_RED) {
 				pedestrianStatus = PED_RED;
-				setTimer3(2000);
+				setTimer2(2000);
 				HAL_GPIO_WritePin(PedestrianLight_0_GPIO_Port, PedestrianLight_0_Pin, GPIO_PIN_SET);
 				HAL_GPIO_WritePin(PedestrianLight_1_GPIO_Port, PedestrianLight_1_Pin, GPIO_PIN_RESET);
 				__HAL_TIM_SetCompare(&htim3, TIM_CHANNEL_1,0);
